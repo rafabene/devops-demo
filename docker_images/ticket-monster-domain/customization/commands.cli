@@ -1,0 +1,7 @@
+# Mark the commands below to be run as a batch
+batch
+
+deploy /opt/jboss/wildfly/customization/ticket-monster.war --server-groups=ticketmonster-server-group
+
+# Execute the batch
+run-batch
