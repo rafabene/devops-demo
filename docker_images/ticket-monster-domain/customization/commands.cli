@@ -1,7 +1,21 @@
 # Mark the commands below to be run as a batch
 batch
 
-deploy /opt/jboss/wildfly/customization/ticket-monster.war --server-groups=ticketmonster-server-group
+# first stop the default servers, block until the server is down
+/host=master/server-config=server-one:stop(blocking=true)
+/host=master/server-config=server-two:stop(blocking=true)
+/host=master/server-config=server-three:stop(blocking=true)
 
-# Execute the batch
+# remove the default server configuration and server-groups
+/host=master/server-config=server-one:remove
+/host=master/server-config=server-two:remove
+/host=master/server-config=server-three:remove
+/server-group=other-server-group:remove
+/server-group=main-server-group:remove
+
+/server-group=ticketmonster-servers:add(profile=full, socket-binding-group=full-sockets, socket-binding-port-offset=100)
+
+deploy /opt/jboss/wildfly/customization/ticket-monster.war --server-groups=ticketmonster-servers
+
+#Execute the batch
 run-batch
