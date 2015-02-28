@@ -80,7 +80,7 @@
 
     <servers>
         <server name="ticket-monster-wildfly-server" group="ticketmonster-servers" auto-start="true">
-            <socket-bindings socket-binding-group="full-sockets" port-offset="0"/>
+            <socket-bindings socket-binding-group="ha-sockets" port-offset="0"/>
         </server>
 </servers>
 </host>

@@ -1,10 +1,12 @@
-# Use latest jjboss/wildfly 
+# Use latest jboss/wildfly
 FROM jboss/wildfly
+
+MAINTAINER "Rafael Benevides" <benevides@redhat.com>
 
 #Create admin user
 RUN /opt/jboss/wildfly/bin/add-user.sh -u admin -p docker#admin --silent
 
-#Add customization folder
+# Add customization folder
 COPY customization /opt/jboss/wildfly/customization/
 
 COPY ticket-monster.war /opt/jboss/wildfly/customization/
