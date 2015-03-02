@@ -1,3 +1,0 @@
-[submodule "ticket-monster"]
-	path = ticket-monster
-	url = git@github.com:jboss-developer/ticket-monster.git
