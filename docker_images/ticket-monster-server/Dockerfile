@@ -5,9 +5,6 @@ MAINTAINER "Rafael Benevides" <benevides@redhat.com>
 
 ADD host.xml /opt/jboss/wildfly/domain/configuration/
 
-
-USER root
-
 # Expose the ports we're interested in
 EXPOSE 8009
 
