@@ -1,0 +1,24 @@
+{
+    "id": "wildfly-server-controller",
+    "apiVersion": "v1beta1",
+    "kind": "ReplicationController",
+    "desiredState": {
+      "replicas": 1,
+      "replicaSelector": {"name": "wildfly-server"},
+      "podTemplate": {
+        "desiredState": {
+           "manifest": {
+             "version": "v1beta1",
+             "id": "wildfly-server-controller",
+             "containers": [{
+               "name": "wildfly-server",
+               "image": "rafabene/wildfly-ticketmonster-server",
+               "ports": [{"containerPort": 9990, "hostPort": 9990}],
+               "env": [{"name":"POSTGRES_USER", "value":"ticketmonster"}, {"name":"POSTGRES_PASSWORD", "value":"ticketmonster-docker"}]
+             }]
+           }
+         },
+         "labels": {"name": "wildfly-server"}
+        }},
+    "labels": {"name": "wildfly-server"}
+  }
