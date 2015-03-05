@@ -14,7 +14,8 @@
                "name": "wildfly-server",
                "image": "rafabene/wildfly-ticketmonster-server",
                "ports": [{"containerPort": 8009}],
-               "command": ["sh", "-c", '/opt/jboss/wildfly/bin/domain.sh -b 0.0.0.0 -Djboss.domain.master.address=$WILDFLY_DOMAIN_SERVICE_HOST -Dpostgres.host=$POSTGRES_SERVICE_HOST']
+               "imagePullPolicy": "PullAlways",
+               "command": ["sh","-c",'/opt/jboss/wildfly/bin/domain.sh -b `hostname --ip-address`  -Djboss.domain.master.address=$WILDFLY_DOMAIN_SERVICE_HOST -Dpostgres.host=$POSTGRES_SERVICE_HOST']
              }]
            }
          },
