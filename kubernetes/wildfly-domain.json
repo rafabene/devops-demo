@@ -13,8 +13,7 @@
              "containers": [{
                "name": "wildfly-domain",
                "image": "rafabene/wildfly-ticketmonster-domain",
-               "ports": [{"containerPort": 9990, "hostPort": 9990}],
-               "ports": [{"containerPort": 9999, "hostPort": 9999}],
+               "ports": [{"containerPort": 9990, "hostPort": 9990}, {"containerPort": 9999, "hostPort": 9999}],
              }]
            }
          },
