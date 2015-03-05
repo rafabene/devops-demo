@@ -1,0 +1,23 @@
+{
+    "id": "wildfly-domain-controller",
+    "apiVersion": "v1beta1",
+    "kind": "ReplicationController",
+    "desiredState": {
+      "replicas": 1,
+      "replicaSelector": {"name": "wildfly-domain"},
+      "podTemplate": {
+        "desiredState": {
+           "manifest": {
+             "version": "v1beta1",
+             "id": "wildfly-domain-controller",
+             "containers": [{
+               "name": "wildfly-domain",
+               "image": "rafabene/wildfly-ticketmonster-domain",
+               "ports": [{"containerPort": 9990, "hostPort": 9990}],
+             }]
+           }
+         },
+         "labels": {"name": "wildfly-domain"}
+        }},
+    "labels": {"name": "wildfly-domain"}
+  }

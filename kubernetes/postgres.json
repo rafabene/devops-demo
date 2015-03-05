@@ -1,0 +1,24 @@
+{
+    "id": "postgres-controller",
+    "apiVersion": "v1beta1",
+    "kind": "ReplicationController",
+    "desiredState": {
+      "replicas": 1,
+      "replicaSelector": {"name": "postgres"},
+      "podTemplate": {
+        "desiredState": {
+           "manifest": {
+             "version": "v1beta1",
+             "id": "postgres-controller",
+             "containers": [{
+               "name": "postgres",
+               "image": "postgres",
+               "ports": [{"containerPort": 5432, "hostPort": 5432}],
+               "env": [{"name":"POSTGRES_USER", "value":"ticketmonster"}, {"name":"POSTGRES_PASSWORD", "value":"ticketmonster-docker"}]
+             }]
+           }
+         },
+         "labels": {"name": "postgres"}
+        }},
+    "labels": {"name": "postgres"}
+  }

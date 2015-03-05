@@ -1,0 +1,13 @@
+{
+  "id": "wildfly-domain",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "port": 9990,
+  "containerPort": 9990,
+  "selector": {
+    "name": "wildfly-domain"
+  },
+  "labels": {
+    "name": "wildfly-domain"
+  }
+}

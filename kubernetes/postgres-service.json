@@ -1,0 +1,13 @@
+{
+  "id": "postgres",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "port": 5432,
+  "containerPort": 5432,
+  "selector": {
+    "name": "postgres"
+  },
+  "labels": {
+    "name": "postgres"
+  }
+}
