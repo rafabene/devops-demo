@@ -13,8 +13,8 @@
              "containers": [{
                "name": "wildfly-server",
                "image": "rafabene/wildfly-ticketmonster-server",
-               "ports": [{"containerPort": 9990, "hostPort": 9990}],
-               "env": [{"name":"POSTGRES_USER", "value":"ticketmonster"}, {"name":"POSTGRES_PASSWORD", "value":"ticketmonster-docker"}]
+               "ports": [{"containerPort": 8009}],
+               "command": ["sh", "-c", '/opt/jboss/wildfly/bin/domain.sh -b 0.0.0.0 -Djboss.domain.master.address=$WILDFLY_DOMAIN_SERVICE_HOST -Dpostgres.host=$POSTGRES_SERVICE_HOST']
              }]
            }
          },

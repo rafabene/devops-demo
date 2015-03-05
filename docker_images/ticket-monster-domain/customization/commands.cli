@@ -17,8 +17,8 @@ batch
 /server-group=ticketmonster-servers:add(profile=ha, socket-binding-group=ha-sockets, socket-binding-port-offset=100)
 
 # Configure mod_cluster to no use tcp advertisement
-/profile=ha/subsystem=modcluster/mod-cluster-config=configuration:write-attribute(name=advertise,value=false)
-/profile=ha/subsystem=modcluster/mod-cluster-config=configuration:write-attribute(name=proxy-list,value=${modcluster.host:modcluster}:80)
+#/profile=ha/subsystem=modcluster/mod-cluster-config=configuration:write-attribute(name=advertise,value=false)
+#/profile=ha/subsystem=modcluster/mod-cluster-config=configuration:write-attribute(name=proxy-list,value=${modcluster.host:modcluster}:80)
 
 #Deploy ticket-monster to server-group
 deploy /opt/jboss/wildfly/customization/postgresql-9.4-1201.jdbc41.jar --server-groups=ticketmonster-servers
