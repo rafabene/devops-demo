@@ -1,24 +1,42 @@
 {
-    "id": "wildfly-domain-controller",
     "apiVersion": "v1beta1",
+    "id": "wildfly-domain-rc",
     "kind": "ReplicationController",
+    "labels": {
+        "name": "wildfly-domain"
+    },
     "desiredState": {
-      "replicas": 1,
-      "replicaSelector": {"name": "wildfly-domain"},
-      "podTemplate": {
-        "desiredState": {
-           "manifest": {
-             "version": "v1beta1",
-             "id": "wildfly-domain-controller",
-             "containers": [{
-               "name": "wildfly-domain",
-               "image": "rafabene/wildfly-ticketmonster-domain",
-               "imagePullPolicy": "PullAlways",
-               "ports": [{"containerPort": 9990, "hostPort": 9990}, {"containerPort": 9999, "hostPort": 9999}],
-             }]
-           }
-         },
-         "labels": {"name": "wildfly-domain"}
-        }},
-    "labels": {"name": "wildfly-domain"}
-  }
+        "replicas": 1,
+        "replicaSelector": {
+            "name": "wildfly-domain"
+        },
+        "podTemplate": {
+            "labels": {
+                "name": "wildfly-domain"
+            },
+            "desiredState": {
+                "manifest": {
+                    "id": "wildfly-domain-rc",
+                    "version": "v1beta1",
+                    "containers": [
+                        {
+                            "name": "wildfly-domain",
+                            "image": "rafabene/wildfly-ticketmonster-domain",
+                            "imagePullPolicy": "PullAlways",
+                            "ports": [
+                                {
+                                    "containerPort": 9990,
+                                    "hostPort": 9990
+                                },
+                                {
+                                    "containerPort": 9999,
+                                    "hostPort": 9999
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,23 +1,37 @@
 {
-    "id": "modcluster-controller",
     "apiVersion": "v1beta1",
+    "id": "modcluster-rc",
     "kind": "ReplicationController",
+    "labels": {
+        "name": "modcluster"
+    },
     "desiredState": {
-      "replicas": 1,
-      "replicaSelector": {"name": "modcluster"},
-      "podTemplate": {
-        "desiredState": {
-           "manifest": {
-             "version": "v1beta1",
-             "id": "modcluster-controller",
-             "containers": [{
-               "name": "modcluster",
-               "image": "goldmann/mod_cluster",
-               "ports": [{"containerPort": 80, "hostPort": 80}],
-             }]
-           }
-         },
-         "labels": {"name": "modcluster"}
-        }},
-    "labels": {"name": "modcluster"}
-  }
+        "replicas": 1,
+        "replicaSelector": {
+            "name": "modcluster"
+        },
+        "podTemplate": {
+            "labels": {
+                "name": "modcluster"
+            },
+            "desiredState": {
+                "manifest": {
+                    "id": "modcluster-rc",
+                    "version": "v1beta1",
+                    "containers": [
+                        {
+                            "name": "modcluster",
+                            "image": "goldmann/mod_cluster",
+                            "ports": [
+                                {
+                                    "containerPort": 80,
+                                    "hostPort": 80
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

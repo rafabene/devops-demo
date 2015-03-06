@@ -1,24 +1,63 @@
 {
-    "id": "postgres-controller",
     "apiVersion": "v1beta1",
+    "id": "postgres-rc",
     "kind": "ReplicationController",
+    "labels": {
+        "name": "postgres"
+    },
     "desiredState": {
-      "replicas": 1,
-      "replicaSelector": {"name": "postgres"},
-      "podTemplate": {
-        "desiredState": {
-           "manifest": {
-             "version": "v1beta1",
-             "id": "postgres-controller",
-             "containers": [{
-               "name": "postgres",
-               "image": "postgres",
-               "ports": [{"containerPort": 5432, "hostPort": 5432}],
-               "env": [{"name":"POSTGRES_USER", "value":"ticketmonster"}, {"name":"POSTGRES_PASSWORD", "value":"ticketmonster-docker"}]
-             }]
-           }
-         },
-         "labels": {"name": "postgres"}
-        }},
-    "labels": {"name": "postgres"}
-  }
+        "replicas": 1,
+        "replicaSelector": {
+            "name": "postgres"
+        },
+        "podTemplate": {
+            "labels": {
+                "name": "postgres"
+            },
+            "desiredState": {
+                "manifest": {
+                    "id": "postgres-rc",
+                    "version": "v1beta1",
+                    "volumes": [
+                        {
+                            "name": "pgdata",
+                            "source": {
+                                "hostDir": {
+                                    "path": "/var/lib/postgresql/data"
+                                }
+                            }
+                        }
+                    ],
+                    "containers": [
+                        {
+                            "name": "postgres",
+                            "image": "postgres",
+                            "env": [
+                                {
+                                    "name": "POSTGRES_USER",
+                                    "value": "ticketmonster"
+                                },
+                                {
+                                    "name": "POSTGRES_PASSWORD",
+                                    "value": "ticketmonster-docker"
+                                }
+                            ],
+                            "ports": [
+                                {
+                                    "containerPort": 5432,
+                                    "hostPort": 5432
+                                }
+                            ],
+                            "volumeMounts": [
+                                {
+                                    "name": "pgdata",
+                                    "mountPath": "/var/lib/postgresql/data",
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+        },
+    }
+}
