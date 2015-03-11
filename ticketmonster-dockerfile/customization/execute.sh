@@ -17,7 +17,7 @@ function wait_for_server() {
 }
 
 echo "=> Starting WildFly server"
-$JBOSS_HOME/bin/$JBOSS_MODE.sh -c $JBOSS_CONFIG > /dev/null &
+$JBOSS_HOME/bin/$JBOSS_MODE.sh -c $JBOSS_CONFIG -Dmodcluster.host=127.0.0.1 > /dev/null &
 
 echo "=> Waiting for the server to boot"
 wait_for_server

@@ -15,6 +15,6 @@ The pieces of this demo are:
 
 ==================================
 
-To run this demo on raw Docker, check [Readme-Docker.md](Readme-Docker.md)
+To run this demo on raw Docker, check [Docker image Readme.md](ticketmonster-dockerfile/Readme.md)
 
 To run this demo on a Kubernetes Cluster, check [Readme-Kubernetes.md](Readme-Kubernetes.md)
