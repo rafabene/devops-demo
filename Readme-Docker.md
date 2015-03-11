@@ -18,8 +18,7 @@ Before start, make sure you have the latest version of the images used on this D
 
 Execute:
 
-    docker pull rafabene/wildfly-ticketmonster-domain
-    docker pull rafabene/wildfly-ticketmonster-server
+    docker pull rafabene/wildfly-ticketmonster
     
 
 
@@ -27,7 +26,7 @@ Execute:
 
 Execute:
 
-    docker run --name db -d -p 5432:5432 -e POSTGRES_USER=ticketmonster -e POSTGRES_PASSWORD=ticketmonster-docker postgres
+    docker run --name db -d -p 5432:5432 -e POSTGRES_USER=ticketmonster -e POSTGRES_PASSWORD=ticketmonster-docker -v /var/lib/postgres/data:/var/lib/postgresql/data postgres
     
 
 2. Start the Wildfly Domain conroller
