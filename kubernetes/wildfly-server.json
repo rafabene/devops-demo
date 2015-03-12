@@ -21,17 +21,18 @@
                     "containers": [
                         {
                             "name": "wildfly-server",
-                            "image": "rafabene/wildfly-ticketmonster-server",
+                            "image": "rafabene/wildfly-ticketmonster",
                             "imagePullPolicy": "PullAlways",
                             "ports": [
                                 {
-                                    "containerPort": 8009
+                                    "containerPort": 8080,
+                                    "containerPort": 9990
                                 }
                             ],
                             "command": [
                                 "sh",
                                 "-c",
-                                '/opt/jboss/wildfly/bin/domain.sh -b `hostname --ip-address`  -Djboss.domain.master.address=$WILDFLY_DOMAIN_SERVICE_HOST -Dpostgres.host=$POSTGRES_SERVICE_HOST'
+                                '/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml  -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_SERVICE_HOST -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST'
                             ]
                         }
                     ]
