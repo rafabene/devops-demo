@@ -3,7 +3,8 @@
     "id": "postgres-rc",
     "kind": "ReplicationController",
     "labels": {
-        "name": "postgres"
+        "name": "postgres",
+        "context": "DevopsDemo"
     },
     "desiredState": {
         "replicas": 1,
@@ -12,7 +13,8 @@
         },
         "podTemplate": {
             "labels": {
-                "name": "postgres"
+                "name": "postgres",
+                "context": "DevopsDemo"
             },
             "desiredState": {
                 "manifest": {
@@ -51,13 +53,13 @@
                             "volumeMounts": [
                                 {
                                     "name": "pgdata",
-                                    "mountPath": "/var/lib/postgresql/data",
+                                    "mountPath": "/var/lib/postgresql/data"
                                 }
                             ]
                         }
                     ]
                 }
-            },
-        },
+            }
+        }
     }
 }

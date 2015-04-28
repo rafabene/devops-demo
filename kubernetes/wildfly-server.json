@@ -3,7 +3,8 @@
     "id": "wildfly-server-rc",
     "kind": "ReplicationController",
     "labels": {
-        "name": "wildfly-server"
+        "name": "wildfly-server",
+        "context": "DevopsDemo"
     },
     "desiredState": {
         "replicas": 2,
@@ -12,7 +13,8 @@
         },
         "podTemplate": {
             "labels": {
-                "name": "wildfly-server"
+                "name": "wildfly-server",
+                "context": "DevopsDemo"
             },
             "desiredState": {
                 "manifest": {
@@ -32,7 +34,7 @@
                             "command": [
                                 "sh",
                                 "-c",
-                                '/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml  -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_SERVICE_HOST -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST'
+                                "/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml  -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_SERVICE_HOST -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST"
                             ]
                         }
                     ]

@@ -4,7 +4,8 @@
     "kind": "Service",
     "containerPort": 80,
     "labels": {
-        "name": "modcluster"
+        "name": "modcluster",
+        "context": "DevopsDemo"
     },
     "port": 80,
     "selector": {

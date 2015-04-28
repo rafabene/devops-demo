@@ -4,7 +4,8 @@
     "kind": "Service",
     "containerPort": 5432,
     "labels": {
-        "name": "postgres"
+        "name": "postgres",
+        "context": "DevopsDemo"
     },
     "port": 5432,
     "selector": {
