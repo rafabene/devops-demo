@@ -1,0 +1,13 @@
+db:
+  image: postgres
+  ports:
+     - "5432:5432"
+  environment:
+    - POSTGRES_USER=ticketmonster
+    - POSTGRES_PASSWORD=ticketmonster-docker
+wildfly:
+  image: rafabene/wildfly-ticketmonster
+  links:
+    - db:db
+  ports:
+    - "8080"
