@@ -1,0 +1,16 @@
+db:
+  image: postgres
+  ports:
+     - "5432:5432"
+  environment:
+    - POSTGRES_USER=ticketmonster
+    - POSTGRES_PASSWORD=ticketmonster-docker
+modcluster:
+  image: goldmann/mod_cluster
+  ports:
+     - "80:80"
+wildfly:
+  build: ../Dockerfiles/ticketmonster/
+  links:
+    - db:db
+    - modcluster:modcluster
