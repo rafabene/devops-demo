@@ -1,5 +1,5 @@
 echo "Creating cluster ..."
-TOKEN=`docker run swarm create`
+TOKEN=`docker run --rm swarm create`
 echo "Got the token " $TOKEN
 echo "Creating Swarm master ..."
 docker-machine create -d virtualbox --swarm --swarm-master --swarm-strategy "spread" --swarm-discovery  token://$TOKEN swarm-master
