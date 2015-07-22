@@ -16,4 +16,8 @@ The pieces of this demo are:
 
 To run this demo on raw Docker, check [Docker image Readme.md](Dockerfiles/ticketmonster/Readme.md)
 
+To run this demo using Docker Compose, check [Docker Compose Readme.md](compose/Readme.md)
+
+To run this demo on a Docker Swarm Cluster, check [Docker Swarm Readme.md](swarm/Readme.md)
+
 To run this demo on a Kubernetes Cluster, check [Kubernetes Readme.md](kubernetes/Readme.md)
