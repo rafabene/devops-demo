@@ -35,7 +35,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
       docker info
 
   The following output will be shown:
-  
+```
     Containers: 4
     Images: 3
     Role: primary
@@ -59,6 +59,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
       └ Labels: executiondriver=native-0.2, kernelversion=4.0.5-boot2docker, operatingsystem=Boot2Docker 1.7.0 (TCL 6.3); master : 7960f90 - Thu Jun 18 18:31:45 UTC 2015, provider=virtualbox, storagedriver=aufs
     CPUs: 3
     Total Memory: 3.065 GiB
+```
 
 4. Start the containers
 
