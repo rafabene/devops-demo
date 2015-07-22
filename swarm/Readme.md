@@ -1,4 +1,4 @@
-# Ticket-Monster Docker HA Cluster
+# Ticket-Monster Docker Swarm Cluster
 
 
 
