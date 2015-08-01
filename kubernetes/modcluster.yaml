@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: modcluster-replication-controller
+  labels:
+    name: modcluster
+    context: DevOpsDemo
+spec:
+  replicas: 1
+  selector:
+    name: modcluster
+  template:
+    metadata:
+      labels:
+        name: modcluster
+        context: DevOpsDemo
+    spec:
+      containers:
+        - name: modcluster
+          image: goldmann/mod_cluster
+          ports:
+            - name: http-port
+              containerPort: 80
+              protocol: TCP
+

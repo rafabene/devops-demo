@@ -25,7 +25,7 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
 
   Execute:
 
-      cluster/kubectl.sh get minions
+      cluster/kubectl.sh get nodes
       cluster/kubectl.sh get pods
     
 
@@ -33,16 +33,16 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
 
   Execute:
 
-      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/postgres.json
-      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/postgres-service.json
+      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/postgres.yaml
+      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/postgres-service.yaml
     
 
 3. Install the Apache httpd + modcluster (Pod and Service)
 
   Execute:
 
-      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/modcluster.json
-      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/modcluster-service.json
+      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/modcluster.yaml
+      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/modcluster-service.yaml
     
 
   _Note that if the Status is "Pending" it could be that the Pod still downloading the image like explained on Step [3]_
@@ -67,7 +67,7 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
 
   Execute:
 
-      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/wildfly-server.json
+      cluster/kubectl.sh create -f <PATH TO THIS DEMO>/wildfly-server.yaml
     
 
   Check the pods:
@@ -96,7 +96,15 @@ Execute:
 
 Verify that the pod is recreated to keep at least 2 instances of wildfly-server-rc running.
 
-9. Troubleshoot
+9. Cleanup
+
+Execute:
+
+    cluster/kubectl.sh delete rc,services,pods   -l context=DevOpsDemo
+    
+
+
+10. Troubleshoot
 
   You can check the logs by running the log command on the POD.
   First get the pod name and the container name:

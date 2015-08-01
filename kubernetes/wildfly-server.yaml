@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: wildfly-replication-controller
+  labels:
+    name: wildfly
+    context: DevOpsDemo
+spec:
+  replicas: 1
+  selector:
+    name: wildfly
+  template:
+    metadata:
+      labels:
+        name: wildfly
+        context: DevOpsDemo
+    spec:
+      containers:
+        - name: wildfly
+          image: rafabene/wildfly-ticketmonster
+          ports:
+            - name: wildfly-port
+              containerPort: 8080
+              protocol: TCP
+            - name: admin-port
+              containerPort: 9990
+              protocol: TCP
+          command: [
+                    "sh",
+                    "-c",
+                    "/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml  -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_SERVICE_HOST -Dpostgres.port=$POSTGRES_SERVICE_PORT -Dmodcluster.host=$MODCLUSTER_SERVICE_HOST -Dmodcluster.port=$MODCLUSTER_SERVICE_PORT "
+            ]
+          imagePullPolicy: Always
+
+
