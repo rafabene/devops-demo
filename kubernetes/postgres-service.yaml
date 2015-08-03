@@ -9,6 +9,7 @@ spec:
   ports:
   # the port that this service should serve on
   - port: 5432
+    name: postgres-port
   # label keys and values that must match in order to receive traffic for this service
   selector: 
     name: postgres
