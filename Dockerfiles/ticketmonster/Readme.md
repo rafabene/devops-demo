@@ -43,7 +43,7 @@ Execute:
   Execute:
 
       open http://127.0.0.1/mod_cluster_manager  #For Linux containers
-      open http://`boot2docker ip`/mod_cluster_manager  #For boot2docker containers
+      active=`docker-machine active`; open http://`docker-machine ip $active`/mod_cluster_manager  #For docker-machine containers
 
   Click on `Auto Refresh` link.
 
@@ -51,7 +51,7 @@ Execute:
 
   Execute:
 
-      docker run -d --name server1 --link db:db --link modcluster:modcluster  rafabene/wildfly-ticketmonster
+      docker run -d --name server1 --link db:db rafabene/wildfly-ticketmonster
 
 
 5. Check at /mod_cluster_manager page that Wildfly was registered at modcluster
@@ -60,17 +60,17 @@ Execute:
 
   Execute:
 
-      docker run -d --name server1 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
-      docker run -d --name server2 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
-      docker run -d --name server3 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
-
+      docker run -d --name server1 --link db:db rafabene/wildfly-ticketmonster
+      docker run -d --name server2 --link db:db rafabene/wildfly-ticketmonster
+      docker run -d --name server3 --link db:db rafabene/wildfly-ticketmonster
 
 9. Access the application
 
   Execute:
 
       open http://127.0.0.1/ticket-monster/  #For Linux containers
-      open http://`boot2docker ip`/ticket-monster/  #For boot2docker containers
+      active=`docker-machine active`; open http://`docker-machine ip $active`/ticket-monster  #For docker-machine containers
+
 
 10. You can stop some servers and check the application behaviour
 
@@ -120,8 +120,7 @@ _NOTE: The usernmame and password credentials were set in the Docker image: <htt
 You can also use the `docker inspect` command to get the docker host port for 9990:
 
     ./jboss-cli.sh --controller=localhost:`docker inspect --format='{{$map := index .NetworkSettings.Ports "9990/tcp"}}{{$result := index $map 0}}{{$result.HostPort}}' server1` -u=admin -p=docker#admin -c #For Linux containers
-    ./jboss-cli.sh --controller=`boot2docker ip`:`docker inspect --format='{{$map := index .NetworkSettings.Ports "9990/tcp"}}{{$result := index $map 0}}{{$result.HostPort}}' server1` -u=admin -p=docker#admin -c #For boot2docker containers
-
+    active=`docker-machine active`; ./jboss-cli.sh --controller=`docker-machine ip $active`:`docker inspect --format='{{$map := index .NetworkSettings.Ports "9990/tcp"}}{{$result := index $map 0}}{{$result.HostPort}}' server1` -u='admin' -p='docker#admin' -c #For docker-machine containers
 
 Once that you're connected through `jboss-cli`, run:
 
@@ -154,7 +153,7 @@ In this example we will use the following host directory: `~/wildfly-deploy`
 
 First, we will need to start the containers mapping this directory `~/wildfly-deploy` to `/tmp/deploy` inside the container
 
-    docker run -d --name server1 --link db:db --link modcluster:modcluster -v ~/wildfy-deploy:/tmp/deploy rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --link db:db -v ~/wildfy-deploy:/tmp/deploy rafabene/wildfly-ticketmonster
 
 
 Then, copy the ticker-monster.war to `~/wildfly-deploy`
@@ -174,7 +173,7 @@ For WildFly containers that doesn't have any application deployed, you can start
 
 In this example we will use the following host directory: `~/wildfly-deploy`
 
-    docker run -d --name server1 --link db:db --link modcluster:modcluster -v ~/wild-deploy:/opt/jboss/wildfly/standalone/deployments/ rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --link db:db -v ~/wildfly-deploy:/opt/jboss/wildfly/standalone/deployments/ rafabene/wildfly-admin
 
 
 Now, simple copy the  ticker-monster.war to `~/wildfly-deploy`

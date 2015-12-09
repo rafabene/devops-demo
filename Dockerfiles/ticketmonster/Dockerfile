@@ -1,10 +1,10 @@
 # Use latest jboss/wildfly
-FROM jboss/wildfly:8.2.0.Final
+FROM jboss/wildfly:9.0.2.Final
 
 MAINTAINER "Rafael Benevides" <benevides@redhat.com>
 
 #Create admin user
-RUN /opt/jboss/wildfly/bin/add-user.sh -u admin -p docker#admin --silent
+RUN /opt/jboss/wildfly/bin/add-user.sh -u 'admin' -p 'docker#admin' --silent
 
 # Add customization folder
 COPY customization /opt/jboss/wildfly/customization/
