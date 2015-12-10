@@ -13,4 +13,3 @@ wildfly:
   build: ../Dockerfiles/ticketmonster/
   links:
     - db:db
-    - modcluster:modcluster

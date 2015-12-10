@@ -6,7 +6,7 @@ This project contains several images that allows you to run [Ticket Monster](htt
 
 The pieces of this demo are:
 
-- Wildfly 8.x Application Server (Standalone mode) + Ticket Monster application
+- Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application
 - Postgres 9.x Database Server
 - Apache HTTPD + mod_cluster
 
@@ -33,7 +33,7 @@ Execute:
 
   Execute:
 
-      docker run -d --name modcluster -p 80:80 goldmann/mod_cluster
+      docker run -d --name modcluster -p 80:80goldmann/mod_cluster
 
 
 3. Check /mod_cluster_manager

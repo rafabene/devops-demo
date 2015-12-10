@@ -6,7 +6,7 @@ This project contains several images that allows you to run [Ticket Monster](htt
 
 The pieces of this demo are:
 
-- Wildfly 8.x Application Server (Standalone mode) + Ticket Monster application
+- Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application
 - Postgres 9.x Database Server
 
 
@@ -14,7 +14,8 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
 ## Running the images
 
-1. Create the Swarm nodes
+1. Create the Swarm nodes - This script creates a Swarm Cluster with Multi
+   hosting network enabled.
 
   Execute:
 
@@ -61,13 +62,19 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
     Total Memory: 3.065 GiB
 ```
 
-4. Start the containers
+4. Create an Overlay network
 
-  Execute 
+  Execute
 
-     docker-compose up -d
+    docker network create --driver overlay my-swarm-network
 
-5. Verify how the cluster was deployed
+5. Start the containers
+
+  Execute
+
+    docker-compose --x-networking up -d
+
+6. Verify how the cluster was deployed
 
   Execute
 
@@ -82,15 +89,14 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 6. Check the logs.
 
   Execute:
-  
+
       docker-compose logs
 
 7. Access the application
 
   Execute:
 
-      open http://127.0.0.1/ticket-monster/  #For Linux containers
-      open http://`boot2docker ip`/ticket-monster/  #For boot2docker containers
+      open http://`docker-compose port modcluster 80`/ticket-monster/  #For Linux containers
 
 8. Reduce the quantity of servers
 

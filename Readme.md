@@ -8,7 +8,7 @@ You can use [Docker](https://www.docker.com/) or [Kubernetes](http://kubernetes.
 
 The pieces of this demo are:
 
-- Wildfly 8.x Application Server + Ticket Monster application 
+- Wildfly 9.x Application Server + Ticket Monster application
 - Postgres 9.x Database Server
 - Apache HTTPD + mod_cluster
 

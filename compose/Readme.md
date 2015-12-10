@@ -6,7 +6,7 @@ This project contains several images that allows you to run [Ticket Monster](htt
 
 The pieces of this demo are:
 
-- Wildfly 8.x Application Server (Standalone mode) + Ticket Monster application
+- Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application
 - Postgres 9.x Database Server
 - Apache HTTPD + mod_cluster
 
@@ -29,7 +29,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
   Execute:
 
       open http://127.0.0.1/mod_cluster_manager  #For Linux containers
-      open http://`boot2docker ip`/mod_cluster_manager  #For boot2docker containers
+      active=`docker-machine active`; open http://`docker-machine ip $active`/mod_cluster_manager  #For docker-machine containers
 
   Click on `Auto Refresh` link.
 
@@ -46,7 +46,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 6. Check the logs.
 
   Execute:
-  
+
       docker-compose logs
 
 7. Access the application
@@ -54,7 +54,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
   Execute:
 
       open http://127.0.0.1/ticket-monster/  #For Linux containers
-      open http://`boot2docker ip`/ticket-monster/  #For boot2docker containers
+      active=`docker-machine active`; open http://`docker-machine ip $active`/ticket-monster  #For docker-machine containers
 
 8. Reduce the quantity of servers
 

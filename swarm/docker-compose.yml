@@ -1,13 +1,18 @@
 db:
+  container_name: "db"
   image: postgres
   ports:
      - "5432:5432"
   environment:
     - POSTGRES_USER=ticketmonster
     - POSTGRES_PASSWORD=ticketmonster-docker
+  net: "my-swarm-network"
+modcluster:
+  image: goldmann/mod_cluster
+  ports:
+     - "80:80"
+     - "23364:23364/udp"
+  net: "my-swarm-network"
 wildfly:
   image: rafabene/wildfly-ticketmonster
-  links:
-    - db:db
-  ports:
-    - "8080"
+  net: "my-swarm-network"
