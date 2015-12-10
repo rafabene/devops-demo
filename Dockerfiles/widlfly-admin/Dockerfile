@@ -3,8 +3,11 @@ FROM jboss/wildfly:9.0.2.Final
 
 MAINTAINER "Rafael Benevides" <benevides@redhat.com>
 
+ENV USERNAME admin
+ENV PASSWORD docker#dmin
+
 #Create admin user
-RUN /opt/jboss/wildfly/bin/add-user.sh -u admin -p docker#admin --silent
+RUN /opt/jboss/wildfly/bin/add-user.sh -u $USERNAME -p $PASSWORD --silent
 
 # Expose the ports we're interested in
 EXPOSE 8080 9990
