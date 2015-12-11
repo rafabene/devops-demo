@@ -1,15 +1,14 @@
 # Use latest jboss/wildfly
-FROM jboss/wildfly:9.0.2.Final
+FROM rafabene/wildfly-admin
 
 MAINTAINER "Rafael Benevides" <benevides@redhat.com>
-
-#Create admin user
-RUN /opt/jboss/wildfly/bin/add-user.sh -u 'admin' -p 'docker#admin' --silent
 
 # Add customization folder
 COPY customization /opt/jboss/wildfly/customization/
 
 USER root
+
+RUN yum install -y nmap telnet
 
 # Run customization scripts as root
 RUN chmod +x /opt/jboss/wildfly/customization/execute.sh

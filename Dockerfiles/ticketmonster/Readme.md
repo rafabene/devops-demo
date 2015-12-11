@@ -33,7 +33,7 @@ Execute:
 
   Execute:
 
-      docker run -d --name modcluster -p 80:80goldmann/mod_cluster
+      docker run -d --name modcluster -p 80:80 rafabene/mod_cluster
 
 
 3. Check /mod_cluster_manager
