@@ -6,10 +6,12 @@ db:
     - POSTGRES_USER=ticketmonster
     - POSTGRES_PASSWORD=ticketmonster-docker
 modcluster:
-  image: goldmann/mod_cluster
+  container_name: "modcluster"
+  image: rafabene/mod_cluster
   ports:
      - "80:80"
 wildfly:
   build: ../Dockerfiles/ticketmonster/
   links:
-    - db:db
+    - db
+    - modcluster

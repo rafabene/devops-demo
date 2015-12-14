@@ -8,7 +8,7 @@ The pieces of this demo are:
 
 - Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application
 - Postgres 9.x Database Server
-- Apache HTTPD + mod_cluster
+- Apache HTTPD + mod_cluster (Using Server advertisement)
 
 This is an alternative path for running [a "docker only" example](../Dockerfiles/ticketmonster) using [docker-compose](http://docs.docker.com/compose).
 

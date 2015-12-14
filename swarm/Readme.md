@@ -8,6 +8,7 @@ The pieces of this demo are:
 
 - Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application
 - Postgres 9.x Database Server
+- Apache HTTPD + mod_cluster (Without Server advertisement)
 
 
 This is an alternative path for running [a "docker only" example](../Dockerfiles/ticketmonster) using [docker-swarm](http://docs.docker.com/swarm).
@@ -72,7 +73,22 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
   Execute
 
+
     docker-compose --x-networking up -d
+
+You will see the following message:
+
+```
+WARNING:
+"wildfly" defines links, which are not compatible with Docker networking and will be ignored.
+Future versions of Docker will not support links - you should remove them for forwards-compatibility.
+```
+Ignore it. This is caused because we specified *links* and *net* for "wildfly".
+This was intentionally made to make wilfly wait for db startup.
+
+More info at:
+https://docs.docker.com/compose/faq/#how-do-i-get-compose-to-wait-for-my-database-to-be-ready-before-starting-my-application
+
 
 6. Verify how the cluster was deployed
 
@@ -80,35 +96,47 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
     docker ps
 
-6. Scale the Wildfly server.
+7. Check /mod_cluster_manager
+
+  Execute
+  
+    open http://`docker-compose port modcluster 80`/mod_cluster_manager
+
+8. Scale the Wildfly server.
 
   Execute:
 
-      docker-compose scale wildfly=5
+      docker-compose --x-networking scale wildfly=5
 
-6. Check the logs.
+9. Check the logs.
 
   Execute:
 
       docker-compose logs
 
-7. Access the application
+10. Access the application
 
   Execute:
 
       open http://`docker-compose port modcluster 80`/ticket-monster/  #For Linux containers
 
-8. Reduce the quantity of servers
+11. Reduce the quantity of servers
 
   Execute:
 
       docker-compose scale wildfly=2
 
 
-9. Stop the cluster
+12. Stop the cluster
 
   Execute:
 
       docker-compose stop
       docker-compose rm
+      
+13. Destroy de cluster
+
+  Execute
+  
+      ./swarm-destroy.sh
 

@@ -1,18 +1,27 @@
 db:
   container_name: "db"
   image: postgres
+  net: "my-swarm-network"
   ports:
      - "5432:5432"
   environment:
     - POSTGRES_USER=ticketmonster
     - POSTGRES_PASSWORD=ticketmonster-docker
-  net: "my-swarm-network"
 modcluster:
-  image: goldmann/mod_cluster
+  container_name: "modcluster"
+  image: rafabene/mod_cluster
+  net: "my-swarm-network"
   ports:
      - "80:80"
-     - "23364:23364/udp"
-  net: "my-swarm-network"
 wildfly:
   image: rafabene/wildfly-ticketmonster
   net: "my-swarm-network"
+  environment:
+    - MODCLUSTER_HOST=modcluster
+  #Links forces the order of execution: https://github.com/docker/compose/issues/374    
+  links:
+    - db:db
+    - modcluster:modcluster
+    
+  
+

@@ -8,7 +8,7 @@ The pieces of this demo are:
 
 - Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application
 - Postgres 9.x Database Server
-- Apache HTTPD + mod_cluster
+- Apache HTTPD + mod_cluster (Using Server advertisement)
 
 ## Running the images
 
@@ -51,7 +51,7 @@ Execute:
 
   Execute:
 
-      docker run -d --name server1 --link db:db --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster rafabene/wildfly-ticketmonster
+      docker run -d --name server1 --link db:db --link modcluster:modcluster  rafabene/wildfly-ticketmonster
 
 
 5. Check at /mod_cluster_manager page that Wildfly was registered at modcluster
@@ -60,8 +60,8 @@ Execute:
 
   Execute:
 
-      docker run -d --name server2 --link db:db --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster rafabene/wildfly-ticketmonster
-      docker run -d --name server3 --link db:db --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster rafabene/wildfly-ticketmonster
+      docker run -d --name server2 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
+      docker run -d --name server3 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
 
 9. Access the application
 
@@ -94,7 +94,7 @@ Remember to start the container exposing the port 9990.
 
   Execute:
 
-    docker run -d --name server1 --link db:db -p 9990 --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --link db:db -p 9990 --link modcluster:modcluster rafabene/wildfly-ticketmonster
 
 
 Realize that we don't specify the host port and we let docker assign the port itself. This will avoid port colissions if running more than one WildFly instance in the same docker host.
@@ -152,7 +152,7 @@ In this example we will use the following host directory: `~/wildfly-deploy`
 
 First, we will need to start the containers mapping this directory `~/wildfly-deploy` to `/tmp/deploy` inside the container
 
-    docker run -d --name server1 --link db:db --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster-v ~/wildfy-deploy:/tmp/deploy rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --link db:db --link modcluster:modcluster -v ~/wildfy-deploy:/tmp/deploy rafabene/wildfly-ticketmonster
 
 
 Then, copy the ticker-monster.war to `~/wildfly-deploy`
