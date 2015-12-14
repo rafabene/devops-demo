@@ -51,7 +51,7 @@ Execute:
 
   Execute:
 
-      docker run -d --name server1 --link db:db rafabene/wildfly-ticketmonster
+      docker run -d --name server1 --link db:db --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster rafabene/wildfly-ticketmonster
 
 
 5. Check at /mod_cluster_manager page that Wildfly was registered at modcluster
@@ -60,9 +60,8 @@ Execute:
 
   Execute:
 
-      docker run -d --name server1 --link db:db rafabene/wildfly-ticketmonster
-      docker run -d --name server2 --link db:db rafabene/wildfly-ticketmonster
-      docker run -d --name server3 --link db:db rafabene/wildfly-ticketmonster
+      docker run -d --name server2 --link db:db --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster rafabene/wildfly-ticketmonster
+      docker run -d --name server3 --link db:db --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster rafabene/wildfly-ticketmonster
 
 9. Access the application
 
@@ -95,7 +94,7 @@ Remember to start the container exposing the port 9990.
 
   Execute:
 
-    docker run -d --name server1 --link db:db -p 9990 --link modcluster:modcluster rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --link db:db -p 9990 --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster rafabene/wildfly-ticketmonster
 
 
 Realize that we don't specify the host port and we let docker assign the port itself. This will avoid port colissions if running more than one WildFly instance in the same docker host.
@@ -130,7 +129,7 @@ Once that you're connected through `jboss-cli`, run:
 ### Using the web console
 
 
-_NOTE: The usernmame and password credentials were set in the Docker image: <https://github.com/rafabene/devops-demo/blob/master/ticketmonster-dockerfile/Dockerfile#L7>_
+_NOTE: The usernmame and password credentials were set in the Docker image: <https://github.com/rafabene/devops-demo/blob/master/Dockerfiles/widlfly-admin/Dockerfile#L6-L7>_
 
 - Go to the container administration web console in a web browser.
 - Log in with the following credentials: username: admin / password: docker#admin .
@@ -153,7 +152,7 @@ In this example we will use the following host directory: `~/wildfly-deploy`
 
 First, we will need to start the containers mapping this directory `~/wildfly-deploy` to `/tmp/deploy` inside the container
 
-    docker run -d --name server1 --link db:db -v ~/wildfy-deploy:/tmp/deploy rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --link db:db --link modcluster:modcluster -e MODCLUSTER_HOST=modcluster-v ~/wildfy-deploy:/tmp/deploy rafabene/wildfly-ticketmonster
 
 
 Then, copy the ticker-monster.war to `~/wildfly-deploy`
@@ -166,17 +165,4 @@ Finally execute a `mv` command inside the running container to move `/tmp/deploy
 
     docker exec -it server1 /bin/bash -c 'mv /tmp/deploy/ticket-monster.war /opt/jboss/wildfly/standalone/deployments/'
 
-
-#### Option2: WildFly containers without any applications deployed
-
-For WildFly containers that doesn't have any application deployed, you can start the WildFly container mounting the directory `/opt/jboss/wildfly/standalone/deployments/` on the docker host.
-
-In this example we will use the following host directory: `~/wildfly-deploy`
-
-    docker run -d --name server1 --link db:db -v ~/wildfly-deploy:/opt/jboss/wildfly/standalone/deployments/ rafabene/wildfly-admin
-
-
-Now, simple copy the  ticker-monster.war to `~/wildfly-deploy`
-
-    cp ticket-monster.war ~/wildfy-deploy/
 
