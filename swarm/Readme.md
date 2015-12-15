@@ -133,7 +133,7 @@ https://docs.docker.com/compose/faq/#how-do-i-get-compose-to-wait-for-my-databas
 
       docker-compose stop
       docker-compose rm
-      
+
 13. Destroy de cluster
 
   Execute

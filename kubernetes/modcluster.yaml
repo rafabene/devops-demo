@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: modcluster
-          image: goldmann/mod_cluster
+          image: rafabene/mod_cluster
           ports:
             - name: http-port
               containerPort: 80

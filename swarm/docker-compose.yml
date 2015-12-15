@@ -16,8 +16,6 @@ modcluster:
 wildfly:
   image: rafabene/wildfly-ticketmonster
   net: "my-swarm-network"
-  environment:
-    - MODCLUSTER_HOST=modcluster
   #Links forces the order of execution: https://github.com/docker/compose/issues/374    
   links:
     - db:db

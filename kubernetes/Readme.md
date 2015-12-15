@@ -50,19 +50,20 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
 
 4. Check /mod_cluster_manager
 
-  Run 'cluster/kubectl.sh get pods' and verify the IP where the modcluster is running. 
+  Run 'cluster/kubectl.sh get pods -o wide' and verify the IP where the modcluster is running. 
+  
+  Run 'cluster/kubectl.sh describe service modcluster' to get the service port (under NodePort)
 
   Open the /modcluster-manager URL in a browser
 
   Execute:
 
-      open http://<modcluster host ip>/mod_cluster_manager  #For Linux containers
+      open http://<modcluster host ip>:30000/mod_cluster_manager  #For Linux containers
+
 
 
 5. Start the Wildfly Server pods
 
-  This step will run 2 Wildfly servers. If you need to change it, edit the file `wildfly-server.json` and update the `"replicas": 2,` field.
-  
   These Servers doesn't need a Service because it acts as a backend.
 
   Execute:
@@ -76,18 +77,16 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
     
 
   _Note that if the Status is "Pending" it could be that the Pod still downloading the Docker image like explained on Troubleshooting_
+  
+  Scale the number of pods:
+  
+    cluster/kubectl.sh scale --replicas=3 rc wildfly-replication-controller
+    
 
 6. Check at /mod_cluster_manager page that Wildfly was registered at modcluster
 
 
-7. Access the application
-
-Execute:
-
-    open http://127.0.0.1/ticket-monster/  #For Linux containers
-    
-
-8. You can stop some servers (frontend, backend or database) and check the application behaviour
+7. You can stop some servers (frontend, backend or database) and check the application behaviour
 
 Execute:
 
@@ -96,7 +95,7 @@ Execute:
 
 Verify that the pod is recreated to keep at least 2 instances of wildfly-server-rc running.
 
-9. Cleanup
+8. Cleanup
 
 Execute:
 
@@ -104,7 +103,7 @@ Execute:
     
 
 
-10. Troubleshoot
+9. Troubleshoot
 
   You can check the logs by running the log command on the POD.
   First get the pod name and the container name:

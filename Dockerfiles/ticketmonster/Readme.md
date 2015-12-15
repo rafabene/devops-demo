@@ -78,6 +78,11 @@ Execute:
       docker stop server1
       docker stop server2
 
+11. Clean up all containers
+
+  Execute:
+
+      docker rm -f `docker ps -aq`
 
 ## Ways to update Ticket-Monster version on a running container
 
