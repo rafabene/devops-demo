@@ -51,7 +51,7 @@ Execute:
 
   Execute:
 
-      docker run -d --name server1 --link db:db --link modcluster:modcluster  rafabene/wildfly-ticketmonster
+      docker run -d --name server1 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
 
 
 5. Check at /mod_cluster_manager page that Wildfly was registered at modcluster
