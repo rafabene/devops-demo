@@ -12,7 +12,7 @@ The pieces of this demo are:
 - Postgres 9.x Database Server
     - POD
     - Services
-- Wildfly 8.x Application Server + Ticket Monster application
+- Wildfly 9.x Application Server + Ticket Monster application
     - POD
 
 Running the Kubernetes Cluster
