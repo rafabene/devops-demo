@@ -25,14 +25,15 @@ Running the Openshift Cluster
 1. Login in Vagrant Box.
 
   Execute:
-  
+
     vagrant ssh
+    
 
 2. Only If you are NOT using openshift-vagrant - Change Openshift SCC to allow USER directive in Dockerfile.
 
-  If you are installing Openshift from https://github.com/redhat-developer-tooling/openshift-vagrant you can skip this step. openshift-vagrant already has this configuration to allow any Docker image to be run on OpenShift 
+If you are installing Openshift from https://github.com/redhat-developer-tooling/openshift-vagrant you can skip this step. openshift-vagrant already has this configuration to allow any Docker image to be run on OpenShift 
 
-  Execute
+  Execute:
   
     oc --config=/var/lib/origin/openshift.local.config/master/admin.kubeconfig edit scc restricted
 
@@ -60,11 +61,11 @@ _Note: Due to Openshift security restrictions we are using openshift/postgresql-
 
 6. We won't deploy mod_cluster because Openshift uses [routes](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/routes.html) to expose Services.
 
-  Due to this, we will deploy a [Kubernetes Services](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/pods_and_services.html#services) for WildFly instead.
+Due to this, we will deploy a [Kubernetes Services](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/pods_and_services.html#services) for WildFly instead.
 
 7. Get WildFly (Replication Controller + Service + Route) yaml file.
 
-  This shows that the same Kubernetes file can be used to deploy WildFly
+This shows that the same Kubernetes file can be used to deploy WildFly
   
   Execute:
   
@@ -79,7 +80,7 @@ _Note: Due to Openshift security restrictions we are using openshift/postgresql-
 
 7. Create a DNS (or hosts file) entry pointing to www.example.com.
 
-  If you don't have access to your DNS server you can do that by including the entry on /etc/hosts.
+If you don't have access to your DNS server you can do that by including the entry on /etc/hosts.
   
   Execute:
   
