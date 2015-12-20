@@ -35,7 +35,7 @@ Running the Openshift Cluster
 
   Execute:
   
-    oc --config=/var/lib/origin/openshift.local.config/master/admin.kubeconfig edit scc restricted
+      oc --config=/var/lib/origin/openshift.local.config/master/admin.kubeconfig edit scc restricted
 
   Change the runAsUser.Type strategy to RunAsAny. 
 
@@ -43,13 +43,13 @@ Running the Openshift Cluster
 
   Execute:
   
-    oc login
+      oc login
 
 4. Create a new project in Openshift.
 
   Execute:
 
-    oc new-project wildfly-ticketmonster-cluster
+      oc new-project wildfly-ticketmonster-cluster
 
 5. Deploy postgres.
 
@@ -76,7 +76,7 @@ Running the Openshift Cluster
 
   Execute:
   
-    oc create -f wildfly-rc-service-route.yaml
+      oc create -f wildfly-rc-service-route.yaml
 
 7. Create a DNS (or hosts file) entry pointing to www.example.com.
 
@@ -91,18 +91,18 @@ Running the Openshift Cluster
 
   Execute
   
-    open http://www.example.com/ticket-monster
-    
+      open http://www.example.com/ticket-monster
+
 
 
 11. Scale the number of WildFly instances
 
   Execute:
   
-    oc scale rc/wildfly-replication-controller --replicas=3
+      oc scale rc/wildfly-replication-controller --replicas=3
 
 12. Cleanup
 
   Execute:
   
-    oc delete project wildfly-ticketmonster-cluster
+      oc delete project wildfly-ticketmonster-cluster
