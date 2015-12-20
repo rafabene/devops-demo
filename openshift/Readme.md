@@ -8,11 +8,11 @@ The pieces of this demo are:
 
 - Postgres 9.x Database Server
     - POD
-    - Services
+    - Service
 - Wildfly 9.x Application Server + Ticket Monster application
     - POD
     - Service
-    - Route
+    - Openshift Route
     
 Suggested Openshift Installation
 ================================
