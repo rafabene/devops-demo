@@ -80,8 +80,8 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
   
   Scale the number of pods:
   
-    cluster/kubectl.sh scale --replicas=3 rc wildfly-replication-controller
-    
+      cluster/kubectl.sh scale --replicas=3 rc wildfly-replication-controller
+      
 
 6. Check at /mod_cluster_manager page that Wildfly was registered at modcluster
 
