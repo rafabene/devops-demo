@@ -4,7 +4,7 @@ Ticket-Monster HA Cluster using Containers
 
 This project contains images and files that allows you to run [Ticket Monster](http://www.jboss.org/ticket-monster/) on a [WildFly](http://www.wildfly.org) server.
 
-You can use [Docker](https://www.docker.com/) or [Kubernetes](http://kubernetes.io/).
+You can use [Docker](https://www.docker.com/), [Kubernetes](http://kubernetes.io/) or [Openshift](https://www.openshift.org/).
 
 More info: http://rafabene.com/2015/12/15/docker-learning-path-wildfly/
 
