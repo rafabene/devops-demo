@@ -6,11 +6,15 @@ This project contains images and files that allows you to run [Ticket Monster](h
 
 You can use [Docker](https://www.docker.com/) or [Kubernetes](http://kubernetes.io/).
 
+More info: http://rafabene.com/2015/12/15/docker-learning-path-wildfly/
+
 The pieces of this demo are:
 
 - Wildfly 9.x Application Server + Ticket Monster application
 - Postgres 9.x Database Server
 - Apache HTTPD + mod_cluster
+
+![](http://rafabene.com/images/docker_mod_cluster.png)
 
 ==================================
 
