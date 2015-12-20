@@ -65,7 +65,7 @@ Running the Openshift Cluster
 
 7. Get WildFly (Replication Controller + Service + Route) yaml file.
 
-  Get the [yaml file](https://raw.githubusercontent.com/rafabene/devops-demo/master/openshift/wildfly-rc-service-route.yaml) that contains the definition of a `Replication Controller`, a `Service` and a `Route`.
+  Get the [yaml file](https://github.com/rafabene/devops-demo/blob/master/openshift/wildfly-rc-service-route.yaml) that contains the definition of a `Replication Controller`, a `Service` and a `Route`.
   
   Execute:
   
