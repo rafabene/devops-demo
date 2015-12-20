@@ -26,4 +26,4 @@ To run this demo on a Docker Swarm Cluster, check [Docker Swarm Readme.md](swarm
 
 To run this demo on a Kubernetes Cluster, check [Kubernetes Readme.md](kubernetes/Readme.md)
 
-To run this demo on a Openshift, check [Openshift Readme.md](openshift/Readme.md)
+To run this demo on Openshift, check [Openshift Readme.md](openshift/Readme.md)
