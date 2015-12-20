@@ -67,40 +67,39 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
   Execute
 
-    docker network create --driver overlay my-swarm-network
+      docker network create --driver overlay my-swarm-network
 
 5. Start the containers
 
   Execute
 
 
-    docker-compose --x-networking up -d
+      docker-compose --x-networking up -d
 
-You will see the following message:
+  You will see the following message:
 
-```
-WARNING:
-"wildfly" defines links, which are not compatible with Docker networking and will be ignored.
-Future versions of Docker will not support links - you should remove them for forwards-compatibility.
-```
-Ignore it. This is caused because we specified *links* and *net* for "wildfly".
-This was intentionally made to make wilfly wait for db startup.
+  ```
+  WARNING:
+  "wildfly" defines links, which are not compatible with Docker networking and will be ignored.
+  Future versions of Docker will not support links - you should remove them for forwards-compatibility.
+  ```
+  Ignore it. This is caused because we specified *links* and *net* for "wildfly".
+  This was intentionally made to make wilfly wait for db startup.
 
-More info at:
-https://docs.docker.com/compose/faq/#how-do-i-get-compose-to-wait-for-my-database-to-be-ready-before-starting-my-application
+  More info at: https://docs.docker.com/compose/faq/#how-do-i-get-compose-to-wait-for-my-database-to-be-ready-before-starting-my-application
 
 
 6. Verify how the cluster was deployed
 
   Execute
 
-    docker ps
+      docker ps
 
 7. Check /mod_cluster_manager
 
   Execute
   
-    open http://`docker-compose port modcluster 80`/mod_cluster_manager
+      open http://`docker-compose port modcluster 80`/mod_cluster_manager
 
 8. Scale the Wildfly server.
 
