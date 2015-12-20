@@ -72,7 +72,7 @@ Running the Openshift Cluster
       curl https://raw.githubusercontent.com/rafabene/devops-demo/master/openshift/wildfly-rc-service-route.yaml -o wildfly-rc-service-route.yaml    
 
 
-7. Deploy WildFly Replication Controller.
+7. Deploy WildFly Replication Controller + Service + Route.
 
   Execute:
   
@@ -80,7 +80,7 @@ Running the Openshift Cluster
 
 7. Create a DNS (or hosts file) entry pointing to www.example.com.
 
-  If you don't have access to your DNS server you can do that by including the entry on /etc/hosts.
+  If you don't have access to your DNS server you can do that by including the entry in `/etc/hosts`.
   
   Execute:
   
