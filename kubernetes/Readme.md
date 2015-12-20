@@ -21,7 +21,7 @@ Running the Kubernetes Cluster
 Start you Kubernetes Cluster. For more informaton about creating the Kubernetes Cluster, take a look on its [Kubernetes Getting Started Guide](http://kubernetes.io/gettingstarted/)
 _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest stable release to avoid unexpected issues_
 
-1. Check the numbers of minions available and what pods are running
+1. Check the numbers of minions available and what pods are running.
 
   Execute:
 
@@ -29,7 +29,7 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
       cluster/kubectl.sh get pods
     
 
-2. Install the Postgres POD and Service
+2. Install the Postgres POD and Service.
 
   Execute:
 
@@ -37,7 +37,7 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
       cluster/kubectl.sh create -f <PATH TO THIS DEMO>/postgres-service.yaml
     
 
-3. Install the Apache httpd + modcluster (Pod and Service)
+3. Install the Apache httpd + modcluster (Pod and Service).
 
   Execute:
 
@@ -48,7 +48,7 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
   _Note that if the Status is "Pending" it could be that the Pod still downloading the image like explained on Step [3]_
 
 
-4. Check /mod_cluster_manager
+4. Check /mod_cluster_manager.
 
   Run 'cluster/kubectl.sh get pods -o wide' and verify the IP where the modcluster is running. 
   
@@ -62,7 +62,7 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
 
 
 
-5. Start the Wildfly Server pods
+5. Start the Wildfly Server pods.
 
   These Servers doesn't need a Service because it acts as a backend.
 
@@ -83,10 +83,10 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
       cluster/kubectl.sh scale --replicas=3 rc wildfly-replication-controller
       
 
-6. Check at /mod_cluster_manager page that Wildfly was registered at modcluster
+6. Check at /mod_cluster_manager page that Wildfly was registered at modcluster.
 
 
-7. You can stop some servers (frontend, backend or database) and check the application behaviour
+7. You can stop some servers (frontend, backend or database) and check the application behaviour.
 
 Execute:
 
@@ -95,7 +95,7 @@ Execute:
 
 Verify that the pod is recreated to keep at least 2 instances of wildfly-server-rc running.
 
-8. Cleanup
+8. Cleanup.
 
 Execute:
 
@@ -103,7 +103,8 @@ Execute:
     
 
 
-9. Troubleshoot
+Troubleshoot
+============
 
   You can check the logs by running the log command on the POD.
   First get the pod name and the container name:

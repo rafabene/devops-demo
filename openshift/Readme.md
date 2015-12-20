@@ -87,21 +87,21 @@ Running the Openshift Cluster
       echo "<IP OF OPENSHIFT>      www.example.com" >> /etc/hosts    
 
 
-8. Access Ticket-monster
+8. Access Ticket-monster.
 
-  Execute
+  Execute:
   
       open http://www.example.com/ticket-monster
 
 
 
-11. Scale the number of WildFly instances
+11. Scale the number of WildFly instances.
 
   Execute:
   
       oc scale rc/wildfly-replication-controller --replicas=3
 
-12. Cleanup
+12. Cleanup.
 
   Execute:
   

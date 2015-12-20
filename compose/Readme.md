@@ -22,7 +22,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
       docker-compose up -d
 
 
-2. Check /mod_cluster_manager
+2. Check /mod_cluster_manager.
 
   Before starting the Wildfly servers, open /mod_cluster_manager that was exposed on port 80 in the previous step[3]
 
@@ -49,21 +49,21 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
       docker-compose logs
 
-7. Access the application
+7. Access the application.
 
   Execute:
 
       open http://127.0.0.1/ticket-monster/  #For Linux containers
       active=`docker-machine active`; open http://`docker-machine ip $active`/ticket-monster  #For docker-machine containers
 
-8. Reduce the quantity of servers
+8. Reduce the quantity of servers.
 
   Execute:
 
       docker-compose scale wildfly=2
 
 
-9. Stop the cluster
+9. Stop the cluster.
 
   Execute:
 

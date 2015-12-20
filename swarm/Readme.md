@@ -15,15 +15,14 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
 ## Running the images
 
-1. Create the Swarm nodes - This script creates a Swarm Cluster with Multi
-   hosting network enabled.
+1. Create the Swarm nodes - This script creates a Swarm Cluster with Multi hosting network enabled.
 
   Execute:
 
       ./swarm-create.sh
 
 
-2. Connect on cluster
+2. Connect on cluster.
 
   Execute:
 
@@ -63,13 +62,13 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
     Total Memory: 3.065 GiB
 ```
 
-4. Create an Overlay network
+4. Create an Overlay network.
 
   Execute
 
       docker network create --driver overlay my-swarm-network
 
-5. Start the containers
+5. Start the containers.
 
   Execute
 
@@ -89,13 +88,13 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
   More info at: https://docs.docker.com/compose/faq/#how-do-i-get-compose-to-wait-for-my-database-to-be-ready-before-starting-my-application
 
 
-6. Verify how the cluster was deployed
+6. Verify how the cluster was deployed.
 
   Execute
 
       docker ps
 
-7. Check /mod_cluster_manager
+7. Check /mod_cluster_manager.
 
   Execute
   
@@ -113,29 +112,29 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
       docker-compose logs
 
-10. Access the application
+10. Access the application.
 
   Execute:
 
-      open http://`docker-compose port modcluster 80`/ticket-monster/  #For Linux containers
+      open http://`docker-compose port modcluster 80`/ticket-monster/  
 
-11. Reduce the quantity of servers
+11. Reduce the quantity of servers.
 
   Execute:
 
       docker-compose scale wildfly=2
 
 
-12. Stop the cluster
+12. Stop the cluster.
 
   Execute:
 
       docker-compose stop
       docker-compose rm
 
-13. Destroy de cluster
+13. Destroy de cluster.
 
-  Execute
+  Execute:
   
       ./swarm-destroy.sh
 

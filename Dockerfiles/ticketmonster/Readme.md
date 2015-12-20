@@ -21,7 +21,7 @@ Execute:
 
 
 
-1. Start the postgres server container
+1. Start the postgres server container.
 
   Execute:
 
@@ -29,14 +29,14 @@ Execute:
 
 
 
-2. Start the Apache httpd + modcluster
+2. Start the Apache httpd + modcluster.
 
   Execute:
 
       docker run -d --name modcluster -p 80:80 rafabene/mod_cluster
 
 
-3. Check /mod_cluster_manager
+3. Check /mod_cluster_manager.
 
   Before starting the Wildfly servers, open /mod_cluster_manager that was exposed on port 80 in the previous step[3]
 
@@ -47,23 +47,23 @@ Execute:
 
   Click on `Auto Refresh` link.
 
-4. Start the Wildfly server
+4. Start the Wildfly server.
 
   Execute:
 
       docker run -d --name server1 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
 
 
-5. Check at /mod_cluster_manager page that Wildfly was registered at modcluster
+5. Check at /mod_cluster_manager page that Wildfly was registered at modcluster.
 
-6. You can create as many wildfly instances you want
+6. You can create as many wildfly instances you want.
 
   Execute:
 
       docker run -d --name server2 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
       docker run -d --name server3 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster
 
-9. Access the application
+9. Access the application.
 
   Execute:
 
@@ -71,14 +71,14 @@ Execute:
       active=`docker-machine active`; open http://`docker-machine ip $active`/ticket-monster  #For docker-machine containers
 
 
-10. You can stop some servers and check the application behaviour
+10. You can stop some servers and check the application behaviour.
 
   Execute:
 
       docker stop server1
       docker stop server2
 
-11. Clean up all containers
+11. Clean up all containers.
 
   Execute:
 
