@@ -6,13 +6,13 @@ This project contains Pods that allows you to run [Ticket Monster](http://www.jb
 
 The pieces of this demo are:
 
-- Apache HTTPD + mod_cluster - [Dockerfile](../DockerFiles/mod_cluster/Dockerfile)
+- Apache HTTPD + mod_cluster - [Dockerfile](../Dockerfiles/mod_cluster/Dockerfile)
     - POD 
     - Services
 - Postgres 9.x Database Server - [Docker image](https://hub.docker.com/_/postgres/)
     - POD
     - Services
-- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../DockerFiles/ticketmonster/Dockerfile)
+- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster/Dockerfile)
     - POD
 
 Running the Kubernetes Cluster

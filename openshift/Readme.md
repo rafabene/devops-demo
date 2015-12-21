@@ -9,7 +9,7 @@ The pieces of this demo are:
 - Postgres 9.x Database Server - [Docker image](https://hub.docker.com/r/openshift/postgresql-92-centos7/)
     - POD
     - Service
-- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../DockerFiles/ticketmonster/Dockerfile)
+- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster/Dockerfile)
     - POD
     - Service
     - Openshift Route
