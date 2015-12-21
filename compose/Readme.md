@@ -6,9 +6,9 @@ This project contains several images that allows you to run [Ticket Monster](htt
 
 The pieces of this demo are:
 
-- Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application
-- Postgres 9.x Database Server
-- Apache HTTPD + mod_cluster (Using Server advertisement)
+- Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application - [Dockerfile](../DockerFiles/ticketmonster/Dockerfile)
+- Postgres 9.x Database Server - [Docker image](https://hub.docker.com/_/postgres/)
+- Apache HTTPD + mod_cluster (Using Server advertisement) - [Dockerfile](../DockerFiles/mod_cluster/Dockerfile)
 
 This is an alternative path for running [a "docker only" example](../Dockerfiles/ticketmonster) using [docker-compose](http://docs.docker.com/compose).
 

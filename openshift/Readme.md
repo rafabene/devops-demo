@@ -6,10 +6,10 @@ This project contains Pods that allows you to run [Ticket Monster](http://www.jb
 
 The pieces of this demo are:
 
-- Postgres 9.x Database Server
+- Postgres 9.x Database Server - [Docker image](https://hub.docker.com/r/openshift/postgresql-92-centos7/)
     - POD
     - Service
-- Wildfly 9.x Application Server + Ticket Monster application
+- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../DockerFiles/ticketmonster/Dockerfile)
     - POD
     - Service
     - Openshift Route
@@ -72,22 +72,25 @@ Running the Openshift Cluster
       curl https://raw.githubusercontent.com/rafabene/devops-demo/master/openshift/wildfly-rc-service-route.yaml -o wildfly-rc-service-route.yaml    
 
 
-7. Deploy WildFly Replication Controller + Service + Route.
+8. Deploy WildFly Replication Controller + Service + Route.
 
   Execute:
   
       oc create -f wildfly-rc-service-route.yaml
 
-7. Create a DNS (or hosts file) entry pointing to www.example.com.
+9. Create a DNS (or hosts file) entry pointing to www.example.com.
 
   If you don't have access to your DNS server you can do that by including the entry in `/etc/hosts`.
   
-  Execute:
+  Edit your hosts file and add the following entry to it:
   
-      echo "<IP OF OPENSHIFT>      www.example.com" >> /etc/hosts    
+  - Linux or Mac Hosts file: /etc/hosts
+  - Windows: C:\Windows\System32\drivers\etc\hosts
+  
+      <IP OF OPENSHIFT>      www.example.com
 
 
-8. Access Ticket-monster.
+10. Access Ticket-monster.
 
   Execute:
   
@@ -99,7 +102,7 @@ Running the Openshift Cluster
 
   Execute:
   
-      oc scale rc/wildfly-replication-controller --replicas=3
+      oc scale rc/wf-ticketmonster-rc --replicas=2
 
 12. Cleanup.
 
