@@ -8,7 +8,7 @@ eval "$(docker-machine env mh-keystore-aws)"
 echo "Starting Consul at Keystore Machine"
 docker run -d -p "8500:8500" -h "consul"  progrium/consul -server -bootstrap
 echo "Now its time to log in https://console.aws.amazon.com/ec2/ and setup the 'docker-machine' group inbound rules."
-echo "DON'T proceed until inbound rules is configured"
+echo "DON'T PROCEED UNTIL inbound rules is configured"
 echo "If the 'docker-machine' group is configured, click any key to continue..."
 read key
 echo "Creating Swarm master ..."
