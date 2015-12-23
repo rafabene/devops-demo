@@ -20,6 +20,3 @@ wildfly:
   links:
     - db:db
     - modcluster:modcluster
-    
-  
-

@@ -138,3 +138,45 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
   
       ./swarm-destroy.sh
 
+
+## Running Swarm at AWS
+
+1. Create a IAM user.
+
+  - Log in https://console.aws.amazon.com/iam/ and create a user and group.
+  - Take notes of `Access Key ID` and `Secret Access Key`.
+  - Give the group the `AmazonEC2FullAccess` permission.
+  - Assign the group to the newly created user.
+  
+2. Create a VPC.
+
+  - Log in https://console.aws.amazon.com/vpc/
+  - Click on `VPC Wizard`.
+  - Select `VPC with a Single Public Subnet` and click `Select`.
+  - Give it a name and create the VPC with the default options.
+  - Take notes of the VPC id
+  
+3. Setup the environment variables
+
+  Execute:
+  
+      export AWS_ACCESS_KEY_ID=<Access Key ID>
+      export AWS_SECRET_ACCESS_KEY=<Secret Access Key>
+      export AWS_VPC_ID=<VPC id>
+
+4. Create the cluster in AWS
+
+  Execute:
+  
+      ./swarm-create-aws.sh
+
+ - When asked to setup the 'docker-machine' group inbound rules, go to https://console.aws.amazon.com/ec2/ and open ALL TCP, UDP and ICMP ports.
+ 
+5. Connect on cluster.
+
+  Execute:
+
+      eval "$(docker-machine env --swarm swarm-master-aws)"
+
+
+6. Continue at Step 3. at the main instructions.
