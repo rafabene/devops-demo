@@ -62,23 +62,38 @@ Running the Openshift Cluster
 6. We won't deploy mod_cluster because Openshift uses [routes](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/routes.html) to expose Services.
 
   Due to this, we will deploy a [Kubernetes Services](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/pods_and_services.html#services) for WildFly instead.
+  
+7. Deploy WildFly POD
 
-7. Get WildFly (Replication Controller + Service + Route) yaml file.
+  Execute:
+  
+      oc run wildfly --image=rafabene/wildfly-ticketmonster --command=true "sh" -- "-c" "/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml  -b \`hostname --ip-address\` -Dpostgres.host=\$POSTGRES_SERVICE_HOST -Dpostgres.port=\$POSTGRES_SERVICE_PORT"
+
+8. Expose WildFly as a Service
+
+  Execute:
+  
+      oc expose dc wildfly --name=wf-ticketmonster-svc --port=80 --target-port=8080
+
+9. Expose WildFly Route
+
+  Execute:
+  
+      oc expose svc/wf-ticketmonster-svc --hostname www.example.com
+
+
+7. (Alternative for Steps 7, 8 and 9) - Deploy WildFly (Replication Controller + Service + Route) via yaml file.
+
+  Instead of executing 3 commands to run a POD, create service and them create a route to that service, you can specify a YAML file that defines these 3 Openshift/Kubernetes objects.
 
   Get the [yaml file](https://github.com/rafabene/devops-demo/blob/master/openshift/wildfly-rc-service-route.yaml) that contains the definition of a `Replication Controller`, a `Service` and a `Route`.
   
-  Execute:
+  Execute :
   
       curl https://raw.githubusercontent.com/rafabene/devops-demo/master/openshift/wildfly-rc-service-route.yaml -o wildfly-rc-service-route.yaml    
-
-
-8. Deploy WildFly Replication Controller + Service + Route.
-
-  Execute:
-  
       oc create -f wildfly-rc-service-route.yaml
 
-9. Create a DNS (or hosts file) entry pointing to www.example.com.
+10. Create a DNS (or hosts file) entry pointing to www.example.com.
 
   If you don't have access to your DNS server you can do that by including the entry in `/etc/hosts`.
   
@@ -90,7 +105,7 @@ Running the Openshift Cluster
       <IP OF OPENSHIFT>      www.example.com
 
 
-10. Access Ticket-monster.
+11. Access Ticket-monster.
 
   Execute:
   
@@ -98,13 +113,14 @@ Running the Openshift Cluster
 
 
 
-11. Scale the number of WildFly instances.
+12. Scale the number of WildFly instances.
 
   Execute:
   
-      oc scale rc/wf-ticketmonster-rc --replicas=2
+      oc scale dc/wildfly --replicas=1 #If you deployed WildFly via command line
+      oc scale rc/wf-ticketmonster-rc --replicas=2  #If you used the YAML file
 
-12. Cleanup.
+13. Cleanup.
 
   Execute:
   
