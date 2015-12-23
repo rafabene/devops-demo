@@ -102,6 +102,8 @@ Running the Openshift Cluster
   - Linux or Mac Hosts file: /etc/hosts
   - Windows: C:\Windows\System32\drivers\etc\hosts
   
+  File content:
+  
         <IP OF OPENSHIFT>      www.example.com
 
 
