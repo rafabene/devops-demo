@@ -117,7 +117,7 @@ Running the Openshift Cluster
 
   Execute:
   
-      oc scale dc/wildfly --replicas=1 #If you deployed WildFly via command line
+      oc scale dc/wildfly --replicas=2 #If you deployed WildFly via command line
       oc scale rc/wf-ticketmonster-rc --replicas=2  #If you used the YAML file
 
 13. Cleanup.
