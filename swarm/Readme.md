@@ -176,7 +176,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
   Execute:
 
-      eval "$(docker-machine env --swarm swarm-master-aws)"
+      eval "$(docker-machine env --swarm aws-swarm-master)"
 
 
 6. Continue at Step 3. at the main instructions.

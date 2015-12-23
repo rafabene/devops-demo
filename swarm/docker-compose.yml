@@ -15,6 +15,7 @@ modcluster:
      - "80:80"
 wildfly:
   image: rafabene/wildfly-ticketmonster
+  #build: ../Dockerfiles/ticketmonster/
   net: "my-swarm-network"
   #Links forces the order of execution: https://github.com/docker/compose/issues/374    
   links:

@@ -11,6 +11,7 @@ modcluster:
   ports:
      - "80:80"
 wildfly:
+  #image: rafabene/wildfly-ticketmonster
   build: ../Dockerfiles/ticketmonster/
   links:
     - db
