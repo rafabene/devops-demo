@@ -102,7 +102,7 @@ Running the Openshift Cluster
   - Linux or Mac Hosts file: /etc/hosts
   - Windows: C:\Windows\System32\drivers\etc\hosts
   
-      <IP OF OPENSHIFT>      www.example.com
+        <IP OF OPENSHIFT>      www.example.com
 
 
 11. Access Ticket-monster.
