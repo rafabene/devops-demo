@@ -11,8 +11,8 @@ db:
 modcluster:
   container_name: "modcluster"
   restart: "always"
-  #image: rafabene/mod_cluster
-  build: ../Dockerfiles/mod_cluster/
+  image: rafabene/mod_cluster
+  #build: ../Dockerfiles/mod_cluster/
   net: "my-swarm-network"
   ports:
      - "80:80"
