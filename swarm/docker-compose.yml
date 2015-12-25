@@ -1,5 +1,6 @@
 db:
   container_name: "db"
+  restart: "always"
   image: postgres
   net: "my-swarm-network"
   ports:
@@ -9,12 +10,15 @@ db:
     - POSTGRES_PASSWORD=ticketmonster-docker
 modcluster:
   container_name: "modcluster"
-  image: rafabene/mod_cluster
+  restart: "always"
+  #image: rafabene/mod_cluster
+  build: ../Dockerfiles/mod_cluster/
   net: "my-swarm-network"
   ports:
      - "80:80"
 wildfly:
   image: rafabene/wildfly-ticketmonster
+  restart: "restart"
   #build: ../Dockerfiles/ticketmonster/
   net: "my-swarm-network"
   #Links forces the order of execution: https://github.com/docker/compose/issues/374    
