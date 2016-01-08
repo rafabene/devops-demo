@@ -1,16 +1,17 @@
-FROM fedora:23
+FROM fedora:22
 
 MAINTAINER Rafael Benevides <rafabene@gmail.com>
 
 
 RUN echo fastestmirror=true >> /etc/dnf/dnf.conf
 
-RUN dnf update -y; dnf install -y httpd mod_cluster iproute
+RUN dnf install -y httpd mod_cluster iproute
 
 # Disable mod_proxy_balancer module to allow mod_cluster to work
 RUN sed -i 's|LoadModule proxy_balancer_module|# LoadModule proxy_balancer_module|' /etc/httpd/conf.modules.d/00-proxy.conf
 
 ADD launch.sh /
+
 ADD mod_cluster.conf /etc/httpd/conf.d/mod_cluster.conf
 
 EXPOSE 80
