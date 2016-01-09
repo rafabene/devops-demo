@@ -18,12 +18,12 @@ The pieces of this demo are:
 
 ==================================
 
-To run this demo on raw `Docker`, check [Docker image Readme.md](Dockerfiles/ticketmonster/Readme.md)
+To run this demo on raw `Docker`, check [Docker image Readme.md](https://github.com/rafabene/devops-demo/blob/master/Dockerfiles/ticketmonster-ha/Readme.md)
 
-To run this demo using `Docker Compose`, check [Docker Compose Readme.md](compose/Readme.md)
+To run this demo using `Docker Compose`, check [Docker Compose Readme.md](https://github.com/rafabene/devops-demo/blob/master/compose/Readme.md)
 
-To run this demo on a `Docker Swarm Cluster`, check [Docker Swarm Readme.md](swarm/Readme.md)
+To run this demo on a `Docker Swarm Cluster`, check [Docker Swarm Readme.md](https://github.com/rafabene/devops-demo/blob/master/swarm/Readme.md)
 
-To run this demo on a `Kubernetes Cluster`, check [Kubernetes Readme.md](kubernetes/Readme.md)
+To run this demo on a `Kubernetes Cluster`, check [Kubernetes Readme.md](https://github.com/rafabene/devops-demo/blob/master/kubernetes/Readme.md)
 
-To run this demo on `Openshift`, check [Openshift Readme.md](openshift/Readme.md)
+To run this demo on `Openshift`, check [Openshift Readme.md](https://github.com/rafabene/devops-demo/blob/master/openshift/Readme.md)

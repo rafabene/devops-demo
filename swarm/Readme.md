@@ -6,9 +6,9 @@ This project contains several images that allows you to run [Ticket Monster](htt
 
 The pieces of this demo are:
 
-- Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster/Dockerfile)
+- Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster-ha/Dockerfile)
 - Postgres 9.x Database Server - [Docker image](https://hub.docker.com/_/postgres/)
-- Apache HTTPD + mod_cluster (Without Server advertisement) - [Dockerfile](../Dockerfiles/mod_cluster/Dockerfile)
+- Apache HTTPD + mod_cluster (Without Server advertisement) - [Dockerfile](https://hub.docker.com/r/karm/mod_cluster-master-dockerhub/)
 
 
 This is an alternative path for running [a "docker only" example](../Dockerfiles/ticketmonster) using [docker-swarm](http://docs.docker.com/swarm).
@@ -66,27 +66,16 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
   Execute
 
-      docker network create --driver overlay my-swarm-network
+      docker network create --driver overlay mynet
 
 5. Start the containers.
 
   Execute
 
 
-      docker-compose --x-networking up -d
-
-  You will see the following message:
-
-  ```
-  WARNING:
-  "wildfly" defines links, which are not compatible with Docker networking and will be ignored.
-  Future versions of Docker will not support links - you should remove them for forwards-compatibility.
-  ```
-  Ignore it. This is caused because we specified *links* and *net* for "wildfly".
-  This was intentionally made to make wilfly wait for db startup.
-
-  More info at: https://docs.docker.com/compose/faq/#how-do-i-get-compose-to-wait-for-my-database-to-be-ready-before-starting-my-application
-
+      cd ../compose
+      docker-compose pull
+      docker-compose  up -d
 
 6. Verify how the cluster was deployed.
 
@@ -94,17 +83,17 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
       docker ps
 
-7. Check /mod_cluster_manager.
+7. Check /mcm (mod_cluster manager).
 
   Execute
   
-      open http://`docker-compose port modcluster 80`/mod_cluster_manager
+      open http://`docker-compose port modcluster 80`/mcm
 
 8. Scale the Wildfly server.
 
   Execute:
 
-      docker-compose --x-networking scale wildfly=5
+      docker-compose scale wildfly=3
 
 9. Check the logs.
 
@@ -136,6 +125,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
   Execute:
   
+      cd ../swarm
       ./swarm-destroy.sh
 
 

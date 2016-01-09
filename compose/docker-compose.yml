@@ -1,5 +1,7 @@
 db:
+  container_name: "db"
   image: postgres
+  net: mynet
   ports:
      - "5432:5432"
   environment:
@@ -7,12 +9,13 @@ db:
     - POSTGRES_PASSWORD=ticketmonster-docker
 modcluster:
   container_name: "modcluster"
-  image: rafabene/mod_cluster
+  net: mynet
+  image: karm/mod_cluster-master-dockerhub
+  environment:
+    - MODCLUSTER_NET=192. 172. 10. 179.
+    - MODCLUSTER_PORT=80
   ports:
      - "80:80"
 wildfly:
-  #image: rafabene/wildfly-ticketmonster
-  build: ../Dockerfiles/ticketmonster/
-  links:
-    - db
-    - modcluster
+  image: rafabene/wildfly-ticketmonster-ha
+  net: mynet

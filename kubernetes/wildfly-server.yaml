@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: wildfly
-          image: rafabene/wildfly-ticketmonster
+          image: rafabene/wildfly-ticketmonster-ha
           ports:
             - name: wildfly-port
               containerPort: 8080

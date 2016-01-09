@@ -9,7 +9,7 @@ The pieces of this demo are:
 - Postgres 9.x Database Server - [Docker image](https://hub.docker.com/r/openshift/postgresql-92-centos7/)
     - POD
     - Service
-- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster/Dockerfile)
+- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster-ha/Dockerfile)
     - POD
     - Service
     - Openshift Route
@@ -63,19 +63,19 @@ Running the Openshift Cluster
 
   Due to this, we will deploy a [Kubernetes Services](https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/pods_and_services.html#services) for WildFly instead.
   
-7. Deploy WildFly POD
+7. Deploy WildFly POD (via CLI)
 
   Execute:
   
-      oc run wildfly --image=rafabene/wildfly-ticketmonster --command=true "sh" -- "-c" "/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml  -b \`hostname --ip-address\` -Dpostgres.host=\$POSTGRES_SERVICE_HOST -Dpostgres.port=\$POSTGRES_SERVICE_PORT"
+      oc run wildfly --image=rafabene/wildfly-ticketmonster --command=true "sh" -- "-c" "/opt/jboss/wildfly/bin/standalone.sh -b \`hostname --ip-address\` -Dpostgres.host=\$POSTGRES_SERVICE_HOST -Dpostgres.port=\$POSTGRES_SERVICE_PORT"
 
-8. Expose WildFly as a Service
+8. Expose WildFly as a Service (via CLI)
 
   Execute:
   
       oc expose dc wildfly --name=wf-ticketmonster-svc --port=80 --target-port=8080
 
-9. Expose WildFly Route
+9. Expose WildFly Route (via CLI)
 
   Execute:
   
@@ -84,6 +84,8 @@ Running the Openshift Cluster
 
 7. (Alternative for Steps 7, 8 and 9) - Deploy WildFly (Replication Controller + Service + Route) via yaml file.
 
+  Execute Steps 1, 2, 3, 4 and 5.
+  
   Instead of executing 3 commands to run a POD, create service and them create a route to that service, you can specify a YAML file that defines these 3 Openshift/Kubernetes objects.
 
   Get the [yaml file](https://github.com/rafabene/devops-demo/blob/master/openshift/wildfly-rc-service-route.yaml) that contains the definition of a `Replication Controller`, a `Service` and a `Route`.

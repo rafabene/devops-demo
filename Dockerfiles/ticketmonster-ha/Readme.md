@@ -8,7 +8,7 @@ The pieces of this demo are:
 
 - Wildfly 9.x Application Server (Standalone mode) + Ticket Monster application - [Dockerfile](Dockerfile)
 - Postgres 9.x Database Server - [Docker image](https://hub.docker.com/_/postgres/)
-- Apache HTTPD + mod_cluster (Using Server advertisement) - [Dockerfile](../mod_cluster/Dockerfile)
+- Apache HTTPD + mod_cluster (Using Server advertisement) - [Dockerfile](https://hub.docker.com/r/karm/mod_cluster-master-dockerhub/)
 
 ## Running the images
 
@@ -17,53 +17,59 @@ Before start, make sure you have the latest version of the images used on this D
 
 Execute:
 
-    docker pull rafabene/wildfly-ticketmonster
+    docker-compose pull
 
 
+1. Create a network
 
-1. Start the postgres server container.
+  Execute:
+  
+    docker network create mynet
+
+
+2. Start the postgres server container.
 
   Execute:
 
-      docker run --name db -d -p 5432:5432 -e POSTGRES_USER=ticketmonster -e POSTGRES_PASSWORD=ticketmonster-docker postgres
+    docker run --name db -d -p 5432:5432 --net mynet -e POSTGRES_USER=ticketmonster -e POSTGRES_PASSWORD=ticketmonster-docker postgres
 
 
 
-2. Start the Apache httpd + modcluster.
-
-  Execute:
-
-      docker run -d --name modcluster -p 80:80 rafabene/mod_cluster
-
-
-3. Check /mod_cluster_manager.
-
-  Before starting the Wildfly servers, open /mod_cluster_manager that was exposed on port 80 in the previous step[3]
+3. Start the Apache httpd + modcluster.
 
   Execute:
 
-      open http://127.0.0.1/mod_cluster_manager  #For Linux containers
-      active=`docker-machine active`; open http://`docker-machine ip $active`/mod_cluster_manager  #For docker-machine containers
+    docker run -d --net mynet --name modcluster -e MODCLUSTER_NET="192.168. 172. 10." -e MODCLUSTER_PORT=80 -p 80:80 karm/mod_cluster-master-dockerhub
+
+
+4. Check /mcm (mod_cluster manager).
+
+  Before starting the Wildfly servers, open /mcm that was exposed on port 80 in the previous step[3]
+
+  Execute:
+
+      open http://127.0.0.1/mcm  #For Linux containers
+      active=`docker-machine active`; open http://`docker-machine ip $active`/mcm  #For docker-machine containers
 
   Click on `Auto Refresh` link.
 
-4. Start the Wildfly server.
+5. Start the Wildfly server.
 
   Execute:
 
-      docker run -d --name server1 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster-ha
+      docker run -d --name server1 --net mynet rafabene/wildfly-ticketmonster-ha
 
 
-5. Check at /mod_cluster_manager page that Wildfly was registered at modcluster.
+6. Check at /mcm page that Wildfly was registered at modcluster.
 
-6. You can create as many wildfly instances you want.
+7. You can create as many wildfly instances you want.
 
   Execute:
 
-      docker run -d --name server2 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster-ha
-      docker run -d --name server3 --link db:db --link modcluster:modcluster rafabene/wildfly-ticketmonster-ha
+      docker run -d --name server2 --net mynet rafabene/wildfly-ticketmonster-ha
+      docker run -d --name server3 --net mynet rafabene/wildfly-ticketmonster-ha
 
-9. Access the application.
+8. Access the application.
 
   Execute:
 
@@ -71,14 +77,14 @@ Execute:
       active=`docker-machine active`; open http://`docker-machine ip $active`/ticket-monster  #For docker-machine containers
 
 
-10. You can stop some servers and check the application behaviour.
+9. You can stop some servers and check the application behaviour.
 
   Execute:
 
       docker stop server1
       docker stop server2
 
-11. Clean up all containers.
+10. Clean up all containers.
 
   Execute:
 
@@ -99,7 +105,7 @@ Remember to start the container exposing the port 9990.
 
   Execute:
 
-    docker run -d --name server1 --link db:db -p 9990 --link modcluster:modcluster rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --net mynet -p 9990 --link modcluster:modcluster rafabene/wildfly-ticketmonster
 
 
 Realize that we don't specify the host port and we let docker assign the port itself. This will avoid port colissions if running more than one WildFly instance in the same docker host.
@@ -157,13 +163,12 @@ In this example we will use the following host directory: `~/wildfly-deploy`
 
 First, we will need to start the containers mapping this directory `~/wildfly-deploy` to `/tmp/deploy` inside the container
 
-    docker run -d --name server1 --link db:db --link modcluster:modcluster -v ~/wildfy-deploy:/tmp/deploy rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --net mynet -v ~/wildfy-deploy:/tmp/deploy rafabene/wildfly-ticketmonster
 
 
 Then, copy the ticker-monster.war to `~/wildfly-deploy`
 
     cp ticket-monster.war ~/wildfy-deploy/
-
 
 
 Finally execute a `mv` command inside the running container to move `/tmp/deploy/ticket-monster.war` to `/opt/jboss/wildfly/standalone/deployments/`

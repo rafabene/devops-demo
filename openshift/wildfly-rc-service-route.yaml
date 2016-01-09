@@ -28,7 +28,7 @@ spec:
           command: [
                     "sh",
                     "-c",
-                    "/opt/jboss/wildfly/bin/standalone.sh -c standalone-ha.xml  -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_SERVICE_HOST -Dpostgres.port=$POSTGRES_SERVICE_PORT"
+                    "/opt/jboss/wildfly/bin/standalone.sh -b `hostname --ip-address` -Dpostgres.host=$POSTGRES_SERVICE_HOST -Dpostgres.port=$POSTGRES_SERVICE_PORT"
             ]
           imagePullPolicy: Always
 ---

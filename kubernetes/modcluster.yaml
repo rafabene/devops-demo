@@ -17,7 +17,12 @@ spec:
     spec:
       containers:
         - name: modcluster
-          image: rafabene/mod_cluster
+          image: karm/mod_cluster-master-dockerhub
+          env:
+            - name: MODCLUSTER_NET
+              value: "192.168. 172. 10."
+            - name: MODCLUSTER_PORT
+              value: "80"
           ports:
             - name: http-port
               containerPort: 80

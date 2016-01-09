@@ -6,13 +6,13 @@ This project contains Pods that allows you to run [Ticket Monster](http://www.jb
 
 The pieces of this demo are:
 
-- Apache HTTPD + mod_cluster - [Dockerfile](../Dockerfiles/mod_cluster/Dockerfile)
+- Apache HTTPD + mod_cluster - [Dockerfile](https://hub.docker.com/r/karm/mod_cluster-master-dockerhub/)
     - POD 
     - Services
 - Postgres 9.x Database Server - [Docker image](https://hub.docker.com/_/postgres/)
     - POD
     - Services
-- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster/Dockerfile)
+- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster-ha/Dockerfile)
     - POD
 
 Running the Kubernetes Cluster
@@ -48,7 +48,7 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
   _Note that if the Status is "Pending" it could be that the Pod still downloading the image like explained on Step [3]_
 
 
-4. Check /mod_cluster_manager.
+4. Check /mcm (mod_cluster manager).
 
   Run 'cluster/kubectl.sh get pods -o wide' and verify the IP where the modcluster is running. 
   
@@ -58,8 +58,7 @@ _Note: It is suggested to use Vagrant as it's easier to setup. Use the latest st
 
   Execute:
 
-      open http://<modcluster host ip>:30000/mod_cluster_manager  #For Linux containers
-
+      open http://<modcluster host ip>:30000/mcm  #For Linux containers
 
 
 5. Start the Wildfly Server pods.
@@ -99,7 +98,7 @@ Verify that the pod is recreated to keep at least 2 instances of wildfly-server-
 
 Execute:
 
-    cluster/kubectl.sh delete rc,services,pods   -l context=DevOpsDemo
+    cluster/kubectl.sh delete rc,services,pods  -l context=DevOpsDemo
     
 
 
