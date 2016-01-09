@@ -111,6 +111,8 @@ Running the Openshift Cluster
 
 11. Access Ticket-monster.
 
+  NOTE: Openshift Origin VM user port 1080 while CDK 2.0 uses port 80
+
   Execute:
   
       #If using Openshift Origin VM
