@@ -24,14 +24,14 @@ Execute:
 
   Execute:
   
-    docker network create mynet
+      docker network create mynet
 
 
 2. Start the postgres server container.
 
   Execute:
 
-    docker run --name db -d -p 5432:5432 --net mynet -e POSTGRES_USER=ticketmonster -e POSTGRES_PASSWORD=ticketmonster-docker postgres
+      docker run --name db -d -p 5432:5432 --net mynet -e POSTGRES_USER=ticketmonster -e POSTGRES_PASSWORD=ticketmonster-docker postgres
 
 
 
@@ -39,7 +39,7 @@ Execute:
 
   Execute:
 
-    docker run -d --net mynet --name modcluster -e MODCLUSTER_NET="192.168. 172. 10." -e MODCLUSTER_PORT=80 -p 80:80 karm/mod_cluster-master-dockerhub
+      docker run -d --net mynet --name modcluster -e MODCLUSTER_NET="192.168. 172. 10." -e MODCLUSTER_PORT=80 -p 80:80 karm/mod_cluster-master-dockerhub
 
 
 4. Check /mcm (mod_cluster manager).

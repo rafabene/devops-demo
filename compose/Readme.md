@@ -19,7 +19,7 @@ This is an alternative path for running [a "docker only" example](../Dockerfiles
 
   Execute:
   
-    docker network create mynet
+      docker network create mynet
 
 2. Start the containers.
 
