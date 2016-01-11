@@ -105,7 +105,7 @@ Remember to start the container exposing the port 9990.
 
   Execute:
 
-    docker run -d --name server1 --net mynet -p 9990 --link modcluster:modcluster rafabene/wildfly-ticketmonster
+    docker run -d --name server1 --net mynet -p 9990 rafabene/wildfly-ticketmonster
 
 
 Realize that we don't specify the host port and we let docker assign the port itself. This will avoid port colissions if running more than one WildFly instance in the same docker host.
