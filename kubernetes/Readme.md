@@ -12,7 +12,7 @@ The pieces of this demo are:
 - Postgres 9.x Database Server - [Docker image](https://hub.docker.com/_/postgres/)
     - POD
     - Services
-- Wildfly 9.x Application Server + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster-ha/Dockerfile)
+- Wildfly 10.x Application Server + Ticket Monster application - [Dockerfile](../Dockerfiles/ticketmonster-ha/Dockerfile)
     - POD
 
 Running the Kubernetes Cluster

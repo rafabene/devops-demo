@@ -1,5 +1,5 @@
-# Use latest jboss/wildfly
-FROM jboss/wildfly:9.0.2.Final
+# Use jboss/wildfly 10.0.0.Final
+FROM jboss/wildfly:10.0.0.Final
 
 MAINTAINER "Rafael Benevides" <benevides@redhat.com>
 

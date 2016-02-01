@@ -1,4 +1,4 @@
-# Use latest jboss/wildfly
+# Use a customized 10.0.0.Final jboss/wildfly
 FROM rafabene/wildfly-admin
 
 MAINTAINER "Rafael Benevides" <benevides@redhat.com>

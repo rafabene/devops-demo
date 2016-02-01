@@ -1,4 +1,4 @@
-# Ticket-Monster Docker HA Cluster
+# Ticket-Monster Docker HA Cluster (without mod_cluster support)
 
 
 THIS IMAGE IS NOT HA (no mod_cluster support).
