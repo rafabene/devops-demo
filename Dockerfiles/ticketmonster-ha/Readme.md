@@ -145,10 +145,6 @@ At this moment the new ticket-monster version should be deployed
 
 ### Use the deployment scanner
 
-Here we can use two approachs:
-
-#### Option 1: WildFly containers that already have applications deployed
-
 To modify the content inside a running WildFly container that already have applications deployer, you will need to mount a volume from the docker container in the docker host.
 
 In this example we will use the following host directory: `~/wildfly-deploy`
