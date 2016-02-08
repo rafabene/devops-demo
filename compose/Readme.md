@@ -10,22 +10,15 @@ The pieces of this demo are:
 - Postgres 9.x Database Server - [Docker image](https://hub.docker.com/_/postgres/)
 - Apache HTTPD + mod_cluster (Using Server advertisement) - [Docker image](https://hub.docker.com/r/karm/mod_cluster-master-dockerhub/)
 
-This is an alternative path for running [a "docker only" example](../Dockerfiles/ticketmonster) using [docker-compose](http://docs.docker.com/compose).
+This is an alternative path for running [a "docker only" example](../Dockerfiles/ticketmonster-ha) using [docker-compose](http://docs.docker.com/compose).
 
 ## Running the images
 
-Before start, make sure you have the latest version of the images used on this Demo.
-
-Execute:
-
-    docker-compose pull
-
-
-1. Create a network (if it doesn't exist)
+1. Before start, make sure you have the latest version of the images used on this Demo.
 
   Execute:
-  
-      docker network create mynet
+
+      docker-compose pull
 
 2. Start the containers.
 
@@ -34,7 +27,7 @@ Execute:
       docker-compose up -d
 
 
-2. Check /mcm (mod_cluster manager).
+3. Check /mcm (mod_cluster manager).
 
   Before starting the Wildfly servers, open /mcm that was exposed on port 80 in the previous step[3]
 
@@ -45,37 +38,37 @@ Execute:
 
   Click on `Auto Refresh` link.
 
-3. Check at /mcm page that Wildfly was registered at modcluster.
+4. Check at /mcm page that Wildfly was registered at modcluster.
 
-4. Scale the Wildfly server.
+5. Scale the Wildfly server.
 
   Execute:
 
       docker-compose scale wildfly=3
 
-5. Verify that more servers were included at /mcm (mod_cluster manager).
+6. Verify that more servers were included at /mcm (mod_cluster manager).
 
-6. Check the logs.
+7. Check the logs.
 
   Execute:
 
       docker-compose logs
 
-7. Access the application.
+8. Access the application.
 
   Execute:
 
       open http://127.0.0.1/ticket-monster/  #For Linux containers
       active=`docker-machine active`; open http://`docker-machine ip $active`/ticket-monster  #For docker-machine containers
 
-8. Reduce the quantity of servers.
+9. Reduce the quantity of servers.
 
   Execute:
 
       docker-compose scale wildfly=2
 
 
-9. Stop the cluster.
+10. Stop the cluster.
 
   Execute:
 
