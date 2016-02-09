@@ -95,7 +95,7 @@ Running the Openshift Cluster
       curl https://raw.githubusercontent.com/rafabene/devops-demo/master/openshift/wildfly-rc-service-route.yaml -o wildfly-rc-service-route.yaml    
       oc create -f wildfly-rc-service-route.yaml
 
-10. Create a DNS (or hosts file) entry pointing to www.example.com.
+10. Create a DNS (or hosts file) entry pointing to www.timo.com.
 
   If you don't have access to your DNS server you can do that by including the entry in `/etc/hosts`.
   
