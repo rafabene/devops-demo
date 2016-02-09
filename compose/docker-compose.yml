@@ -1,7 +1,6 @@
 version: "2"
 networks:
   mynet:
-    driver: overlay
 services:
   db:
     container_name: "db"
