@@ -6,7 +6,7 @@ MAINTAINER "Rafael Benevides" <benevides@redhat.com>
 ENV JBOSS_MODE standalone
 
 #Create admin user
-RUN /opt/jboss/wildfly/bin/add-user.sh -u $admin -p docker#admin --silent
+RUN /opt/jboss/wildfly/bin/add-user.sh -u admin -p docker#admin --silent
 
 # Expose the ports we're interested in
 EXPOSE 8080 9990
