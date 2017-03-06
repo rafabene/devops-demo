@@ -92,34 +92,15 @@ Running the Openshift Cluster
   
   Execute :
   
-      curl https://raw.githubusercontent.com/rafabene/devops-demo/master/openshift/wildfly-rc-service-route.yaml -o wildfly-rc-service-route.yaml    
-      oc create -f wildfly-rc-service-route.yaml
-
-10. Create a DNS (or hosts file) entry pointing to www.timo.com.
-
-  If you don't have access to your DNS server you can do that by including the entry in `/etc/hosts`.
-  
-  Edit your hosts file and add the following entry to it:
-  
-  - Linux or Mac Hosts file: /etc/hosts
-  - Windows: C:\Windows\System32\drivers\etc\hosts
-  
-  File content:
-  
-        <IP OF OPENSHIFT>      www.timo.com
+      oc create -f https://raw.githubusercontent.com/rafabene/devops-demo/master/openshift/wildfly-rc-service-route.yaml
 
 
-11. Access Ticket-monster.
-
-  NOTE: Openshift Origin VM user port 1080 while CDK 2.0 uses port 80
+9. Access Ticket-monster.
 
   Execute:
-  
-      #If using Openshift Origin VM
-      open http://www.timo.com:1080/ticket-monster 
-      
-      #If using CDK 2.0
-      open http://www.timo.com/ticket-monster
+        
+      #When using CDK
+      open http://wf-ticketmonster-route-myproject.<CDK IP>.xip.io/
 
 
 12. Scale the number of WildFly instances.
