@@ -54,7 +54,6 @@ kind: Route
 metadata:
   name: wf-ticketmonster-route
 spec:
-  host: www.timo.com  
   to:
     kind: Service
     name: wf-ticketmonster-svc
