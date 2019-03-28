@@ -1,5 +1,4 @@
-# Use jboss/wildfly 10.0.0.Final
-FROM jboss/wildfly:10.0.0.Final
+FROM jboss/wildfly:16.0.0.Final
 
 MAINTAINER "Rafael Benevides" <benevides@redhat.com>
 
